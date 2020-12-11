@@ -1,0 +1,109 @@
+package zonewatcher
+
+import (
+	"encoding/binary"
+	"log"
+)
+
+const REG_PER_ZONE = 4
+const REG_ENABLED = 1
+const REG_MODE = 2
+const REG_TARGET_TEMP = 3
+const REG_CURRENT_TEMP = 4
+
+type Watcher interface {
+	ReadRegister(address uint16) (value []byte, err error)
+	RegisterCallback(address uint16, callback func(address uint16))
+}
+
+type Config struct {
+	Zone    int
+	Watcher Watcher
+}
+
+type ZoneWatcher struct {
+	Config
+	OnCurrentTempChange func(newTemp float32)
+	OnTargetTempChange  func(newTemp float32)
+}
+
+func New(config *Config) *ZoneWatcher {
+	zw := &ZoneWatcher{
+		Config: *config,
+	}
+	zw.RegisterCallback(REG_CURRENT_TEMP, func() {
+		if zw.OnCurrentTempChange == nil {
+			return
+		}
+
+		temp, err := zw.GetCurrentTemperature()
+		if err != nil {
+			log.Printf("Cannot read current temperature: %s\n", err)
+			return
+		}
+		zw.OnCurrentTempChange(temp)
+	})
+	zw.RegisterCallback(REG_TARGET_TEMP, func() {
+		if zw.OnTargetTempChange == nil {
+			return
+		}
+
+		temp, err := zw.GetTargetTemperature()
+		if err != nil {
+			log.Printf("Cannot read target temperature: %s\n", err)
+			return
+		}
+		zw.OnTargetTempChange(temp)
+	})
+	return zw
+}
+
+func (zw *ZoneWatcher) RegisterCallback(num int, f func()) {
+	zw.Watcher.RegisterCallback(uint16(zw.Zone*REG_PER_ZONE+num), func(address uint16) {
+		f()
+	})
+}
+
+func (zw *ZoneWatcher) ReadRegister(num int) (uint16, error) {
+
+	b, err := zw.Watcher.ReadRegister(uint16(zw.Zone*REG_PER_ZONE + num))
+	if err != nil {
+		return 0, err
+	}
+	return binary.BigEndian.Uint16(b), nil
+}
+
+func (zw *ZoneWatcher) IsOn() (bool, error) {
+	r1, err := zw.ReadRegister(REG_ENABLED)
+	if err != nil {
+		return false, err
+	}
+
+	return r1&uint16(0x1) != 0, nil
+}
+
+func (zw *ZoneWatcher) IsPresent() (bool, error) {
+	r1, err := zw.ReadRegister(REG_ENABLED)
+	if err != nil {
+		return false, err
+	}
+
+	return r1&uint16(0x2) != 0, nil
+}
+
+func (zw *ZoneWatcher) GetCurrentTemperature() (float32, error) {
+	r4, err := zw.ReadRegister(REG_CURRENT_TEMP)
+	if err != nil {
+		return 0.0, err
+	}
+
+	return float32(r4) / 2.0, nil
+}
+
+func (zw *ZoneWatcher) GetTargetTemperature() (float32, error) {
+	r3, err := zw.ReadRegister(REG_TARGET_TEMP)
+	if err != nil {
+		return 0.0, err
+	}
+	return float32(r3) / 2.0, nil
+}
