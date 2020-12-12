@@ -13,8 +13,15 @@ type BiMap struct {
 }
 
 // NewBiMap returns a an empty, mutable, biMap
-func NewBiMap() *BiMap {
-	return &BiMap{forward: make(map[interface{}]interface{}), inverse: make(map[interface{}]interface{}), immutable: false}
+func NewBiMap(content map[interface{}]interface{}) *BiMap {
+	b := &BiMap{forward: make(map[interface{}]interface{}), inverse: make(map[interface{}]interface{}), immutable: false}
+	if content != nil {
+		for k, v := range content {
+			b.Insert(k, v)
+		}
+	}
+
+	return b
 }
 
 // Insert puts a key and value into the BiMap, provided its mutable. Also creates the reverse mapping from value to key.
