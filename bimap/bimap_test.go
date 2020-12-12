@@ -1,5 +1,7 @@
 package bimap
 
+// original implementation by @vishalkuo: https://github.com/vishalkuo/bimap/
+
 import (
 	"reflect"
 	"runtime/debug"

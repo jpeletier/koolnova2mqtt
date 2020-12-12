@@ -1,6 +1,7 @@
 package bimap
 
 // Package bimap provides a threadsafe bidirectional map
+// original implementation by @vishalkuo: https://github.com/vishalkuo/bimap/
 
 import "sync"
 
