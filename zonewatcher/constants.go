@@ -1,0 +1,19 @@
+package zonewatcher
+
+const REG_PER_ZONE = 4
+const REG_ENABLED = 1
+const REG_MODE = 2
+const REG_TARGET_TEMP = 3
+const REG_CURRENT_TEMP = 4
+
+const FAN_OFF = 0x00
+const FAN_LOW = 0x10
+const FAN_MED = 0x20
+const FAN_HIGH = 0x30
+const FAN_AUTO = 0x40
+
+const MODE_AIR_COOLING = 0x01
+const MODE_AIR_HEATING = 0x02
+const MODE_UNDERFLOOR_HEATING = 0x04
+const MODE_UNDERFLOOR_AIR_COOLING = 0x05
+const MODE_UNDERFLOOR_AIR_HEATING = 0x06

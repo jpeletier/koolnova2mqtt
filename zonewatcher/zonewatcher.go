@@ -5,12 +5,6 @@ import (
 	"log"
 )
 
-const REG_PER_ZONE = 4
-const REG_ENABLED = 1
-const REG_MODE = 2
-const REG_TARGET_TEMP = 3
-const REG_CURRENT_TEMP = 4
-
 type Watcher interface {
 	ReadRegister(address uint16) (value []byte, err error)
 	RegisterCallback(address uint16, callback func(address uint16))
