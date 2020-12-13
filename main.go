@@ -130,6 +130,20 @@ func main() {
 		zone.OnTargetTempChange = func(targetTemp float32) {
 			mqttClient.Publish(getTopic(zone.Zone, "targetTemperature"), 0, false, fmt.Sprintf("%g", targetTemp))
 		}
+		zone.OnFanModeChange = func(fanMode zonewatcher.FanMode) {
+			fanModeStr, found := zonewatcher.FanModes.GetInverse(fanMode)
+			if !found {
+				log.Printf("Unknown fan mode %d", fanMode)
+			}
+			mqttClient.Publish(getTopic(zone.Zone, "fanMode"), 0, false, fanModeStr)
+		}
+		zone.OnHvacModeChange = func(hvacMode zonewatcher.HvacMode) {
+			hvacModeStr, found := zonewatcher.HvacModes.GetInverse(hvacMode)
+			if !found {
+				log.Printf("Unknown hvac mode %d", hvacMode)
+			}
+			mqttClient.Publish(getTopic(zone.Zone, "hvacMode"), 0, false, hvacModeStr)
+		}
 	}
 
 	if token := mqttClient.Connect(); token.Wait() && token.Error() != nil {

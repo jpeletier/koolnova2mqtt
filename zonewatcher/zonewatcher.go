@@ -19,6 +19,8 @@ type ZoneWatcher struct {
 	Config
 	OnCurrentTempChange func(newTemp float32)
 	OnTargetTempChange  func(newTemp float32)
+	OnFanModeChange     func(newMode FanMode)
+	OnHvacModeChange    func(newMode HvacMode)
 }
 
 func New(config *Config) *ZoneWatcher {
@@ -48,6 +50,24 @@ func New(config *Config) *ZoneWatcher {
 			return
 		}
 		zw.OnTargetTempChange(temp)
+	})
+	zw.RegisterCallback(REG_MODE, func() {
+		fanMode, err := zw.GetFanMode()
+		if err != nil {
+			log.Printf("Cannot read fan mode: %s\n", err)
+			return
+		}
+		hvacMode, err := zw.GetHvacMode()
+		if err != nil {
+			log.Printf("Cannot hvac mode: %s\n", err)
+			return
+		}
+		if zw.OnFanModeChange != nil {
+			zw.OnFanModeChange(fanMode)
+		}
+		if zw.OnHvacModeChange != nil {
+			zw.OnHvacModeChange(hvacMode)
+		}
 	})
 	return zw
 }
@@ -100,4 +120,20 @@ func (zw *ZoneWatcher) GetTargetTemperature() (float32, error) {
 		return 0.0, err
 	}
 	return float32(r3) / 2.0, nil
+}
+
+func (zw *ZoneWatcher) GetFanMode() (FanMode, error) {
+	r2, err := zw.ReadRegister(REG_MODE)
+	if err != nil {
+		return 0, err
+	}
+	return (FanMode)(r2 & 0x00F0), nil
+}
+
+func (zw *ZoneWatcher) GetHvacMode() (HvacMode, error) {
+	r2, err := zw.ReadRegister(REG_MODE)
+	if err != nil {
+		return 0, err
+	}
+	return (HvacMode)(r2 & 0x000F), nil
 }
