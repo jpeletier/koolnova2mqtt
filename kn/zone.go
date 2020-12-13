@@ -93,7 +93,7 @@ func (z *Zone) IsOn() (bool, error) {
 		return false, err
 	}
 
-	return r1&uint16(0x1) != 0, nil
+	return r1&0x1 != 0, nil
 }
 
 func (z *Zone) IsPresent() (bool, error) {
@@ -102,7 +102,7 @@ func (z *Zone) IsPresent() (bool, error) {
 		return false, err
 	}
 
-	return r1&uint16(0x2) != 0, nil
+	return r1&0x2 != 0, nil
 }
 
 func (z *Zone) GetCurrentTemperature() (float32, error) {
@@ -111,7 +111,7 @@ func (z *Zone) GetCurrentTemperature() (float32, error) {
 		return 0.0, err
 	}
 
-	return float32(r4) / 2.0, nil
+	return reg2temp(r4), nil
 }
 
 func (z *Zone) GetTargetTemperature() (float32, error) {
@@ -119,7 +119,7 @@ func (z *Zone) GetTargetTemperature() (float32, error) {
 	if err != nil {
 		return 0.0, err
 	}
-	return float32(r3) / 2.0, nil
+	return reg2temp(r3), nil
 }
 
 func (z *Zone) GetFanMode() (FanMode, error) {
@@ -127,7 +127,7 @@ func (z *Zone) GetFanMode() (FanMode, error) {
 	if err != nil {
 		return 0, err
 	}
-	return (FanMode)(r2 & 0x00F0), nil
+	return (FanMode)(r2&0x00F0) >> 4, nil
 }
 
 func (z *Zone) GetHvacMode() (HvacMode, error) {
@@ -136,4 +136,8 @@ func (z *Zone) GetHvacMode() (HvacMode, error) {
 		return 0, err
 	}
 	return (HvacMode)(r2 & 0x000F), nil
+}
+
+func reg2temp(r uint16) float32 {
+	return float32(0x00FF&r) / 2.0
 }

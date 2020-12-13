@@ -8,13 +8,22 @@ const REG_MODE = 2
 const REG_TARGET_TEMP = 3
 const REG_CURRENT_TEMP = 4
 
+const REG_AIRFLOW = 65
+const REG_AC_TARGET_TEMP = 69
+const REG_AC_TARGET_FAN_MODE = 73
+const REG_SERIAL_CONFIG = 77
+const REG_SLAVE_ID = 78
+const REG_EFFICIENCY = 79
+const REG_SYSTEM_ENABLED = 81
+const REG_SYS_HVAC_MODE = 82
+
 type FanMode byte
 
-const FAN_OFF FanMode = 0x00
-const FAN_LOW FanMode = 0x10
-const FAN_MED FanMode = 0x20
-const FAN_HIGH FanMode = 0x30
-const FAN_AUTO FanMode = 0x40
+const FAN_OFF FanMode = 0
+const FAN_LOW FanMode = 1
+const FAN_MED FanMode = 2
+const FAN_HIGH FanMode = 3
+const FAN_AUTO FanMode = 4
 
 type HvacMode byte
 
@@ -39,3 +48,28 @@ var HvacModes = bimap.New(map[interface{}]interface{}{
 	"underfloor air cooling": MODE_UNDERFLOOR_AIR_COOLING,
 	"underfloor air heating": MODE_UNDERFLOOR_AIR_HEATING,
 })
+
+type ACMachine int
+
+const ACMachines = 4
+
+const AC1 ACMachine = 1
+const AC2 ACMachine = 2
+const AC3 ACMachine = 3
+const AC4 ACMachine = 4
+
+func FanMode2Str(fm FanMode) string {
+	st, ok := FanModes.GetInverse(fm)
+	if !ok {
+		st = "unknown"
+	}
+	return st.(string)
+}
+
+func HvacMode2Str(hm HvacMode) string {
+	st, ok := HvacModes.GetInverse(hm)
+	if !ok {
+		st = "unknown"
+	}
+	return st.(string)
+}
