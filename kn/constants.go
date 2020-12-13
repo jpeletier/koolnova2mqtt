@@ -1,4 +1,4 @@
-package zonewatcher
+package kn
 
 import "koolnova2mqtt/bimap"
 

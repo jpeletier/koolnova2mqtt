@@ -4,8 +4,8 @@ import (
 	"crypto/tls"
 	"flag"
 	"fmt"
+	"koolnova2mqtt/kn"
 	"koolnova2mqtt/watcher"
-	"koolnova2mqtt/zonewatcher"
 	"log"
 	"os"
 	"os/signal"
@@ -27,13 +27,13 @@ func buildReader(handler *modbus.RTUClientHandler, client modbus.Client) watcher
 	}
 }
 
-func getActiveZones(w zonewatcher.Watcher) ([]*zonewatcher.ZoneWatcher, error) {
-	var zones []*zonewatcher.ZoneWatcher
+func getActiveZones(w kn.Watcher) ([]*kn.Zone, error) {
+	var zones []*kn.Zone
 
 	for n := 0; n < NUM_ZONES; n++ {
-		zone := zonewatcher.New(&zonewatcher.Config{
-			Zone:    n,
-			Watcher: w,
+		zone := kn.NewZone(&kn.ZoneConfig{
+			ZoneNumber: n,
+			Watcher:    w,
 		})
 		isPresent, err := zone.IsPresent()
 		if err != nil {
@@ -42,7 +42,7 @@ func getActiveZones(w zonewatcher.Watcher) ([]*zonewatcher.ZoneWatcher, error) {
 		if isPresent {
 			zones = append(zones, zone)
 			temp, _ := zone.GetCurrentTemperature()
-			fmt.Printf("Zone %d is present. Temperature %g ºC\n", zone.Zone, temp)
+			fmt.Printf("Zone %d is present. Temperature %g ºC\n", zone.ZoneNumber, temp)
 		}
 	}
 	return zones, nil
@@ -125,24 +125,24 @@ func main() {
 	for _, zone := range zones {
 		zone := zone
 		zone.OnCurrentTempChange = func(currentTemp float32) {
-			mqttClient.Publish(getTopic(zone.Zone, "currentTemperature"), 0, false, fmt.Sprintf("%g", currentTemp))
+			mqttClient.Publish(getTopic(zone.ZoneNumber, "currentTemperature"), 0, false, fmt.Sprintf("%g", currentTemp))
 		}
 		zone.OnTargetTempChange = func(targetTemp float32) {
-			mqttClient.Publish(getTopic(zone.Zone, "targetTemperature"), 0, false, fmt.Sprintf("%g", targetTemp))
+			mqttClient.Publish(getTopic(zone.ZoneNumber, "targetTemperature"), 0, false, fmt.Sprintf("%g", targetTemp))
 		}
-		zone.OnFanModeChange = func(fanMode zonewatcher.FanMode) {
-			fanModeStr, found := zonewatcher.FanModes.GetInverse(fanMode)
+		zone.OnFanModeChange = func(fanMode kn.FanMode) {
+			fanModeStr, found := kn.FanModes.GetInverse(fanMode)
 			if !found {
 				log.Printf("Unknown fan mode %d", fanMode)
 			}
-			mqttClient.Publish(getTopic(zone.Zone, "fanMode"), 0, false, fanModeStr)
+			mqttClient.Publish(getTopic(zone.ZoneNumber, "fanMode"), 0, false, fanModeStr)
 		}
-		zone.OnHvacModeChange = func(hvacMode zonewatcher.HvacMode) {
-			hvacModeStr, found := zonewatcher.HvacModes.GetInverse(hvacMode)
+		zone.OnHvacModeChange = func(hvacMode kn.HvacMode) {
+			hvacModeStr, found := kn.HvacModes.GetInverse(hvacMode)
 			if !found {
 				log.Printf("Unknown hvac mode %d", hvacMode)
 			}
-			mqttClient.Publish(getTopic(zone.Zone, "hvacMode"), 0, false, hvacModeStr)
+			mqttClient.Publish(getTopic(zone.ZoneNumber, "hvacMode"), 0, false, hvacModeStr)
 		}
 	}
 
