@@ -72,15 +72,15 @@ func (w *Watcher) Poll() error {
 	return nil
 }
 
-func (w *Watcher) ReadRegister(address uint16) (value []byte, err error) {
+func (w *Watcher) ReadRegister(address uint16) (value []byte) {
 	if address < w.Address || address > w.Address+uint16(w.Quantity) {
-		return nil, ErrAddressOutOfRange
+		panic(ErrAddressOutOfRange)
 	}
 	if w.state == nil {
-		return nil, ErrUninitialized
+		panic(ErrUninitialized)
 	}
 	registerOffset := int(address-w.Address) * w.RegisterSize
-	return w.state[registerOffset : registerOffset+w.RegisterSize], nil
+	return w.state[registerOffset : registerOffset+w.RegisterSize]
 
 }
 

@@ -13,7 +13,7 @@ type Sys struct {
 	OnACTargetFanModeChange func(ac ACMachine)
 	OnEfficiencyChange      func()
 	OnSystemEnabledChange   func()
-	OnHvacModeChange        func()
+	OnKnModeChange          func()
 }
 
 var ErrUnknownSerialConfig = errors.New("Uknown serial configuration")
@@ -54,103 +54,73 @@ func NewSys(config *SysConfig) *Sys {
 		}
 	})
 
-	s.Watcher.RegisterCallback(REG_SYS_HVAC_MODE, func(address uint16) {
-		if s.OnHvacModeChange != nil {
-			s.OnHvacModeChange()
+	s.Watcher.RegisterCallback(REG_SYS_KN_MODE, func(address uint16) {
+		if s.OnKnModeChange != nil {
+			s.OnKnModeChange()
 		}
 	})
 
 	return s
 }
 
-func (s *Sys) ReadRegister(n int) (int, error) {
-	r, err := s.Watcher.ReadRegister(uint16(n))
-	if err != nil || len(r) != 2 {
-		return 0, nil
-	}
-	return int(r[1]), nil
+func (s *Sys) ReadRegister(n int) int {
+	r := s.Watcher.ReadRegister(uint16(n))
+	return int(r[1])
 }
 
-func (s *Sys) GetAirflow(ac ACMachine) (int, error) {
-	r, err := s.ReadRegister(REG_AIRFLOW + int(ac) - 1)
-	if err != nil {
-		return 0, err
-	}
-	return r, nil
+func (s *Sys) GetAirflow(ac ACMachine) int {
+	r := s.ReadRegister(REG_AIRFLOW + int(ac) - 1)
+	return r
 }
 
-func (s *Sys) GetMachineTargetTemp(ac ACMachine) (float32, error) {
-	r, err := s.ReadRegister(REG_AC_TARGET_TEMP + int(ac) - 1)
-	if err != nil {
-		return 0, err
-	}
-	return reg2temp(uint16(r)), nil
+func (s *Sys) GetMachineTargetTemp(ac ACMachine) float32 {
+	r := s.ReadRegister(REG_AC_TARGET_TEMP + int(ac) - 1)
+	return reg2temp(uint16(r))
 }
 
-func (s *Sys) GetTargetFanMode(ac ACMachine) (FanMode, error) {
-	r, err := s.ReadRegister(REG_AC_TARGET_FAN_MODE + int(ac) - 1)
-	if err != nil {
-		return 0, err
-	}
-	return FanMode(r), nil
+func (s *Sys) GetTargetFanMode(ac ACMachine) FanMode {
+	r := s.ReadRegister(REG_AC_TARGET_FAN_MODE + int(ac) - 1)
+	return FanMode(r)
 }
 
-func (s *Sys) GetBaudRate() (int, error) {
-	r, err := s.ReadRegister(REG_SERIAL_CONFIG)
-	if err != nil {
-		return 0, err
-	}
+func (s *Sys) GetBaudRate() int {
+	r := s.ReadRegister(REG_SERIAL_CONFIG)
 	switch r {
 	case 2, 6:
-		return 9600, nil
+		return 9600
 	case 3, 7:
-		return 19200, nil
+		return 19200
 	}
-	return 0, ErrUnknownSerialConfig
+	return 0
 }
 
-func (s *Sys) GetParity() (string, error) {
-	r, err := s.ReadRegister(REG_SERIAL_CONFIG)
-	if err != nil {
-		return "", err
-	}
+func (s *Sys) GetParity() string {
+	r := s.ReadRegister(REG_SERIAL_CONFIG)
 	switch r {
 	case 2, 3:
-		return "even", nil
+		return "even"
 	case 6, 7:
-		return "none", nil
+		return "none"
 	}
-	return "", ErrUnknownSerialConfig
+	return "unknown"
 }
 
-func (s *Sys) GetSlaveID() (int, error) {
-	r, err := s.ReadRegister(REG_SLAVE_ID)
-	if err != nil {
-		return 0, err
-	}
-	return r, nil
+func (s *Sys) GetSlaveID() int {
+	r := s.ReadRegister(REG_SLAVE_ID)
+	return r
 }
 
-func (s *Sys) GetEfficiency() (int, error) {
-	r, err := s.ReadRegister(REG_EFFICIENCY)
-	if err != nil {
-		return 0, err
-	}
-	return r, nil
+func (s *Sys) GetEfficiency() int {
+	r := s.ReadRegister(REG_EFFICIENCY)
+	return r
 }
 
-func (s *Sys) GetSystemEnabled() (bool, error) {
-	r, err := s.ReadRegister(REG_SYSTEM_ENABLED)
-	if err != nil {
-		return false, err
-	}
-	return r != 0, nil
+func (s *Sys) GetSystemEnabled() bool {
+	r := s.ReadRegister(REG_SYSTEM_ENABLED)
+	return r != 0
 }
 
-func (s *Sys) GetSystemHVACMode() (HvacMode, error) {
-	r, err := s.ReadRegister(REG_SYS_HVAC_MODE)
-	if err != nil {
-		return 0, err
-	}
-	return HvacMode(r), nil
+func (s *Sys) GetSystemKNMode() KnMode {
+	r := s.ReadRegister(REG_SYS_KN_MODE)
+	return KnMode(r)
 }

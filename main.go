@@ -54,6 +54,7 @@ func main() {
 	username := flag.String("username", "", "A username to authenticate to the MQTT server")
 	password := flag.String("password", "", "Password to match username")
 	prefix := flag.String("prefix", "koolnova2mqtt", "MQTT topic root where to publish/read topics")
+	hassPrefix := flag.String("hassPrefix", "homeassistant", "Home assistant discovery prefix")
 	modbusPort := flag.String("modbusPort", "/dev/ttyUSB0", "Serial port where modbus hardware is connected")
 	modbusPortBaudRate := flag.Int("modbusRate", 9600, "Modbus port data rate")
 	modbusDataBits := flag.Int("modbusDataBits", 8, "Modbus port data bits")
@@ -112,6 +113,7 @@ func main() {
 			SlaveID:      byte(slaveID),
 			Publish:      publish,
 			TopicPrefix:  *prefix,
+			HassPrefix:   *hassPrefix,
 			ReadRegister: registerReader,
 		})
 		bridges = append(bridges, bridge)

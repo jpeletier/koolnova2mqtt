@@ -2,11 +2,10 @@ package kn
 
 import (
 	"encoding/binary"
-	"log"
 )
 
 type Watcher interface {
-	ReadRegister(address uint16) (value []byte, err error)
+	ReadRegister(address uint16) (value []byte)
 	RegisterCallback(address uint16, callback func(address uint16))
 }
 
@@ -20,7 +19,7 @@ type Zone struct {
 	OnCurrentTempChange func(newTemp float32)
 	OnTargetTempChange  func(newTemp float32)
 	OnFanModeChange     func(newMode FanMode)
-	OnHvacModeChange    func(newMode HvacMode)
+	OnKnModeChange      func(newMode KnMode)
 }
 
 func NewZone(config *ZoneConfig) *Zone {
@@ -32,11 +31,7 @@ func NewZone(config *ZoneConfig) *Zone {
 			return
 		}
 
-		temp, err := z.GetCurrentTemperature()
-		if err != nil {
-			log.Printf("Cannot read current temperature: %s\n", err)
-			return
-		}
+		temp := z.GetCurrentTemperature()
 		z.OnCurrentTempChange(temp)
 	})
 	z.RegisterCallback(REG_TARGET_TEMP, func() {
@@ -44,29 +39,17 @@ func NewZone(config *ZoneConfig) *Zone {
 			return
 		}
 
-		temp, err := z.GetTargetTemperature()
-		if err != nil {
-			log.Printf("Cannot read target temperature: %s\n", err)
-			return
-		}
+		temp := z.GetTargetTemperature()
 		z.OnTargetTempChange(temp)
 	})
 	z.RegisterCallback(REG_MODE, func() {
-		fanMode, err := z.GetFanMode()
-		if err != nil {
-			log.Printf("Cannot read fan mode: %s\n", err)
-			return
-		}
-		hvacMode, err := z.GetHvacMode()
-		if err != nil {
-			log.Printf("Cannot hvac mode: %s\n", err)
-			return
-		}
+		fanMode := z.GetFanMode()
+		hvacMode := z.GetHvacMode()
 		if z.OnFanModeChange != nil {
 			z.OnFanModeChange(fanMode)
 		}
-		if z.OnHvacModeChange != nil {
-			z.OnHvacModeChange(hvacMode)
+		if z.OnKnModeChange != nil {
+			z.OnKnModeChange(hvacMode)
 		}
 	})
 	return z
@@ -78,64 +61,40 @@ func (z *Zone) RegisterCallback(num int, f func()) {
 	})
 }
 
-func (z *Zone) ReadRegister(num int) (uint16, error) {
+func (z *Zone) ReadRegister(num int) uint16 {
 
-	b, err := z.Watcher.ReadRegister(uint16(z.ZoneNumber*REG_PER_ZONE + num))
-	if err != nil {
-		return 0, err
-	}
-	return binary.BigEndian.Uint16(b), nil
+	b := z.Watcher.ReadRegister(uint16(z.ZoneNumber*REG_PER_ZONE + num))
+	return binary.BigEndian.Uint16(b)
 }
 
-func (z *Zone) IsOn() (bool, error) {
-	r1, err := z.ReadRegister(REG_ENABLED)
-	if err != nil {
-		return false, err
-	}
-
-	return r1&0x1 != 0, nil
+func (z *Zone) IsOn() bool {
+	r1 := z.ReadRegister(REG_ENABLED)
+	return r1&0x1 != 0
 }
 
-func (z *Zone) IsPresent() (bool, error) {
-	r1, err := z.ReadRegister(REG_ENABLED)
-	if err != nil {
-		return false, err
-	}
-
-	return r1&0x2 != 0, nil
+func (z *Zone) IsPresent() bool {
+	r1 := z.ReadRegister(REG_ENABLED)
+	return r1&0x2 != 0
 }
 
-func (z *Zone) GetCurrentTemperature() (float32, error) {
-	r4, err := z.ReadRegister(REG_CURRENT_TEMP)
-	if err != nil {
-		return 0.0, err
-	}
-
-	return reg2temp(r4), nil
+func (z *Zone) GetCurrentTemperature() float32 {
+	r4 := z.ReadRegister(REG_CURRENT_TEMP)
+	return reg2temp(r4)
 }
 
-func (z *Zone) GetTargetTemperature() (float32, error) {
-	r3, err := z.ReadRegister(REG_TARGET_TEMP)
-	if err != nil {
-		return 0.0, err
-	}
-	return reg2temp(r3), nil
+func (z *Zone) GetTargetTemperature() float32 {
+	r3 := z.ReadRegister(REG_TARGET_TEMP)
+	return reg2temp(r3)
 }
 
-func (z *Zone) GetFanMode() (FanMode, error) {
-	r2, err := z.ReadRegister(REG_MODE)
-	if err != nil {
-		return 0, err
-	}
-	return (FanMode)(r2&0x00F0) >> 4, nil
+func (z *Zone) GetFanMode() FanMode {
+	r2 := z.ReadRegister(REG_MODE)
+	return (FanMode)(r2&0x00F0) >> 4
 }
 
-func (z *Zone) GetHvacMode() (HvacMode, error) {
-	r2, err := z.ReadRegister(REG_MODE)
-	if err != nil {
-		return 0, err
-	}
-	return (HvacMode)(r2 & 0x000F), nil
+func (z *Zone) GetHvacMode() KnMode {
+	r2 := z.ReadRegister(REG_MODE)
+	return (KnMode)(r2 & 0x000F)
 }
 
 func reg2temp(r uint16) float32 {

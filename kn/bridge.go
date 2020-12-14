@@ -1,9 +1,9 @@
 package kn
 
 import (
+	"encoding/json"
 	"fmt"
 	"koolnova2mqtt/watcher"
-	"log"
 	"strconv"
 )
 
@@ -14,6 +14,7 @@ type Config struct {
 	SlaveID      byte
 	Publish      Publish
 	TopicPrefix  string
+	HassPrefix   string
 	ReadRegister watcher.ReadRegister
 }
 
@@ -32,13 +33,10 @@ func getActiveZones(w Watcher) ([]*Zone, error) {
 			ZoneNumber: n,
 			Watcher:    w,
 		})
-		isPresent, err := zone.IsPresent()
-		if err != nil {
-			return nil, err
-		}
+		isPresent := zone.IsPresent()
 		if isPresent {
 			zones = append(zones, zone)
-			temp, _ := zone.GetCurrentTemperature()
+			temp := zone.GetCurrentTemperature()
 			fmt.Printf("Zone %d is present. Temperature %g ºC\n", zone.ZoneNumber, temp)
 		}
 	}
@@ -89,91 +87,123 @@ func (b *Bridge) Start() {
 		return
 	}
 
+	getHVACMode := func() string {
+		if !sys.GetSystemEnabled() {
+			return HVAC_MODE_OFF
+		}
+		switch sys.GetSystemKNMode() {
+		case MODE_AIR_COOLING, MODE_UNDERFLOOR_AIR_COOLING:
+			return HVAC_MODE_COOL
+		case MODE_AIR_HEATING, MODE_UNDERFLOOR_HEATING, MODE_UNDERFLOOR_AIR_HEATING:
+			return HVAC_MODE_HEAT
+		}
+		return "unknown"
+	}
+
+	getHoldMode := func() string {
+		switch sys.GetSystemKNMode() {
+		case MODE_AIR_COOLING, MODE_AIR_HEATING:
+			return HOLD_MODE_FAN_ONLY
+		case MODE_UNDERFLOOR_HEATING:
+			return HOLD_MODE_UNDERFLOOR_ONLY
+		case MODE_UNDERFLOOR_AIR_COOLING, MODE_UNDERFLOOR_AIR_HEATING:
+			return HOLD_MODE_UNDERFLOOR_AND_FAN
+		}
+		return "unknown"
+	}
+
 	zones, err := getActiveZones(b.zw)
+	var hvacModes []string
+	for k, _ := range KnModes.GetForwardMap() {
+		hvacModes = append(hvacModes, k.(string))
+	}
+
+	hvacModeTopic := b.getSysTopic("hvacMode")
+	hvacModeTopicSet := hvacModeTopic + "/set"
+	holdModeTopic := b.getSysTopic("holdMode")
+	holdModeSetTopic := holdModeTopic + "/set"
 
 	for _, zone := range zones {
 		zone := zone
+		currentTempTopic := b.getZoneTopic(zone.ZoneNumber, "currentTemp")
+		targetTempTopic := b.getZoneTopic(zone.ZoneNumber, "targetTemp")
+		targetTempSetTopic := targetTempTopic + "/set"
+		fanModeTopic := b.getZoneTopic(zone.ZoneNumber, "fanMode")
+		fanModeSetTopic := fanModeTopic + "/set"
+
 		zone.OnCurrentTempChange = func(currentTemp float32) {
-			b.Publish(b.getZoneTopic(zone.ZoneNumber, "currentTemp"), 0, false, fmt.Sprintf("%g", currentTemp))
+			b.Publish(currentTempTopic, 0, true, fmt.Sprintf("%g", currentTemp))
 		}
 		zone.OnTargetTempChange = func(targetTemp float32) {
-			b.Publish(b.getZoneTopic(zone.ZoneNumber, "targetTemp"), 0, false, fmt.Sprintf("%g", targetTemp))
+			b.Publish(targetTempTopic, 0, true, fmt.Sprintf("%g", targetTemp))
 		}
 		zone.OnFanModeChange = func(fanMode FanMode) {
-			b.Publish(b.getZoneTopic(zone.ZoneNumber, "fanMode"), 0, false, FanMode2Str(fanMode))
+			b.Publish(fanModeTopic, 0, true, FanMode2Str(fanMode))
 		}
-		zone.OnHvacModeChange = func(hvacMode HvacMode) {
-			b.Publish(b.getZoneTopic(zone.ZoneNumber, "hvacMode"), 0, false, HvacMode2Str(hvacMode))
+		zone.OnKnModeChange = func(knMode KnMode) {
+
 		}
+
+		name := fmt.Sprintf("%s_zone%d", b.ModuleName, zone.ZoneNumber)
+		config := map[string]interface{}{
+			"name":                      name,
+			"current_temperature_topic": currentTempTopic,
+			"precision":                 0.5,
+			"temperature_state_topic":   targetTempTopic,
+			"temperature_command_topic": targetTempSetTopic,
+			"temperature_unit":          "C",
+			"temp_step":                 0.5,
+			"unique_id":                 name,
+			"min_temp":                  15,
+			"max_temp":                  35,
+			"modes":                     []string{HVAC_MODE_COOL, HVAC_MODE_HEAT, HVAC_MODE_OFF},
+			"mode_state_topic":          hvacModeTopic,
+			"mode_command_topic":        hvacModeTopicSet,
+			"fan_modes":                 []string{"auto", "low", "medium", "high"},
+			"fan_mode_state_topic":      fanModeTopic,
+			"fan_mode_command_topic":    fanModeSetTopic,
+			"hold_modes":                []string{HOLD_MODE_UNDERFLOOR_ONLY, HOLD_MODE_FAN_ONLY, HOLD_MODE_UNDERFLOOR_AND_FAN},
+			"hold_state_topic":          holdModeTopic,
+			"hold_command_topic":        holdModeSetTopic,
+		}
+
+		configJSON, _ := json.Marshal(config)
+		// <discovery_prefix>/<component>/[<node_id>/]<object_id>/config
+		b.Publish(fmt.Sprintf("%s/climate/%s/zone%d/config", b.HassPrefix, b.ModuleName, zone.ZoneNumber), 0, true, string(configJSON))
 	}
 
 	sys.OnACAirflowChange = func(ac ACMachine) {
-		airflow, err := sys.GetAirflow(ac)
-		if err != nil {
-			log.Printf("Error reading airflow of AC %d: %s", ac, err)
-			return
-		}
-		b.Publish(b.getACTopic(ac, "airflow"), 0, false, strconv.Itoa(airflow))
+		airflow := sys.GetAirflow(ac)
+		b.Publish(b.getACTopic(ac, "airflow"), 0, true, strconv.Itoa(airflow))
 	}
 	sys.OnACTargetTempChange = func(ac ACMachine) {
-		targetTemp, err := sys.GetMachineTargetTemp(ac)
-		if err != nil {
-			log.Printf("Error reading target temp of AC %d: %s", ac, err)
-			return
-		}
-		b.Publish(b.getACTopic(ac, "targetTemp"), 0, false, fmt.Sprintf("%g", targetTemp))
+		targetTemp := sys.GetMachineTargetTemp(ac)
+		b.Publish(b.getACTopic(ac, "targetTemp"), 0, true, fmt.Sprintf("%g", targetTemp))
 	}
 	sys.OnACTargetFanModeChange = func(ac ACMachine) {
-		targetAirflow, err := sys.GetTargetFanMode(ac)
-		if err != nil {
-			log.Printf("Error reading target airflow of AC %d: %s", ac, err)
-			return
-		}
-		b.Publish(b.getACTopic(ac, "fanMode"), 0, false, FanMode2Str(targetAirflow))
+		targetAirflow := sys.GetTargetFanMode(ac)
+		b.Publish(b.getACTopic(ac, "fanMode"), 0, true, FanMode2Str(targetAirflow))
 	}
 	sys.OnEfficiencyChange = func() {
-		efficiency, err := sys.GetEfficiency()
-		if err != nil {
-			log.Printf("Error reading efficiency value: %s", err)
-			return
-		}
-		b.Publish(b.getSysTopic("efficiency"), 0, false, strconv.Itoa(efficiency))
+		efficiency := sys.GetEfficiency()
+		b.Publish(b.getSysTopic("efficiency"), 0, true, strconv.Itoa(efficiency))
 	}
 	sys.OnSystemEnabledChange = func() {
-		enabled, err := sys.GetSystemEnabled()
-		if err != nil {
-			log.Printf("Error reading enabled value: %s", err)
-			return
-		}
-		b.Publish(b.getSysTopic("enabled"), 0, false, fmt.Sprintf("%t", enabled))
+		enabled := sys.GetSystemEnabled()
+		b.Publish(b.getSysTopic("enabled"), 0, true, fmt.Sprintf("%t", enabled))
+		b.Publish(hvacModeTopic, 0, true, getHVACMode())
 	}
-	sys.OnHvacModeChange = func() {
-		mode, err := sys.GetSystemHVACMode()
-		if err != nil {
-			log.Printf("Error reading hvac mode: %s", err)
-			return
-		}
-		b.Publish(b.getSysTopic("hvacMode"), 0, false, HvacMode2Str(mode))
+	sys.OnKnModeChange = func() {
+		b.Publish(hvacModeTopic, 0, true, getHVACMode())
+		b.Publish(holdModeTopic, 0, true, getHoldMode())
 	}
 
 	b.zw.TriggerCallbacks()
 	b.sysw.TriggerCallbacks()
 
-	bauds, err := sys.GetBaudRate()
-	if err != nil {
-		log.Printf("Error reading configured serial baud rate: %s", err)
-	}
-	parity, err := sys.GetParity()
-	if err != nil {
-		log.Printf("Error reading configured serial parity: %s", err)
-	}
-	slaveID, err := sys.GetSlaveID()
-	if err != nil {
-		log.Printf("Error reading configured modbus slave ID: %s", err)
-	}
-	b.Publish(b.getSysTopic("serialBaud"), 0, false, strconv.Itoa(bauds))
-	b.Publish(b.getSysTopic("serialParity"), 0, false, parity)
-	b.Publish(b.getSysTopic("slaveId"), 0, false, strconv.Itoa(slaveID))
+	b.Publish(b.getSysTopic("serialBaud"), 0, true, strconv.Itoa(sys.GetBaudRate()))
+	b.Publish(b.getSysTopic("serialParity"), 0, true, sys.GetParity())
+	b.Publish(b.getSysTopic("slaveId"), 0, true, strconv.Itoa(sys.GetSlaveID()))
 }
 
 func (b *Bridge) Tick() {
