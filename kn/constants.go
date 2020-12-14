@@ -2,6 +2,8 @@ package kn
 
 import "koolnova2mqtt/bimap"
 
+const NUM_ZONES = 16
+
 const REG_PER_ZONE = 4
 const REG_ENABLED = 1
 const REG_MODE = 2
@@ -16,6 +18,11 @@ const REG_SLAVE_ID = 78
 const REG_EFFICIENCY = 79
 const REG_SYSTEM_ENABLED = 81
 const REG_SYS_HVAC_MODE = 82
+
+const FIRST_ZONE_REGISTER = REG_ENABLED
+const TOTAL_ZONE_REGISTERS = NUM_ZONES * REG_PER_ZONE
+const FIRST_SYS_REGISTER = REG_AIRFLOW
+const TOTAL_SYS_REGISTERS = 18
 
 type FanMode byte
 

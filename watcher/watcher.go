@@ -15,7 +15,7 @@ type Config struct {
 	RegisterSize int
 }
 
-type watcher struct {
+type Watcher struct {
 	Config
 	state     []byte
 	callbacks map[uint16]func(address uint16)
@@ -25,18 +25,18 @@ var ErrIncorrectRegisterSize = errors.New("Incorrect register size")
 var ErrAddressOutOfRange = errors.New("Register address out of range")
 var ErrUninitialized = errors.New("State uninitialized. Call Poll() first.")
 
-func New(config *Config) *watcher {
-	return &watcher{
+func New(config *Config) *Watcher {
+	return &Watcher{
 		Config:    *config,
 		callbacks: make(map[uint16]func(address uint16)),
 	}
 }
 
-func (w *watcher) RegisterCallback(address uint16, callback func(address uint16)) {
+func (w *Watcher) RegisterCallback(address uint16, callback func(address uint16)) {
 	w.callbacks[address] = callback
 }
 
-func (w *watcher) Poll() error {
+func (w *Watcher) Poll() error {
 	newState, err := w.Read(w.SlaveID, w.Address, w.Quantity)
 	if err != nil {
 		return err
@@ -72,7 +72,7 @@ func (w *watcher) Poll() error {
 	return nil
 }
 
-func (w *watcher) ReadRegister(address uint16) (value []byte, err error) {
+func (w *Watcher) ReadRegister(address uint16) (value []byte, err error) {
 	if address < w.Address || address > w.Address+uint16(w.Quantity) {
 		return nil, ErrAddressOutOfRange
 	}
@@ -84,7 +84,7 @@ func (w *watcher) ReadRegister(address uint16) (value []byte, err error) {
 
 }
 
-func (w *watcher) TriggerCallbacks() {
+func (w *Watcher) TriggerCallbacks() {
 	for address, callback := range w.callbacks {
 		callback(address)
 	}
