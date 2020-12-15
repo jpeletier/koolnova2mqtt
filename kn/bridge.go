@@ -172,6 +172,23 @@ func (b *Bridge) Start() error {
 				log.Printf("Cannot set target temperature to %g in zone %d", targetTemp, zone.ZoneNumber)
 			}
 		})
+		if err != nil {
+			return err
+		}
+
+		err = b.Subscribe(fanModeSetTopic, func(message string) {
+			fm, err := Str2FanMode(message)
+			if err != nil {
+				log.Printf("Unknown fan mode %q in message to zone %d", message, zone.ZoneNumber)
+			}
+			err = zone.SetFanMode(fm)
+			if err != nil {
+				log.Printf("Cannot set fan mode to %s in zone %d", message, zone.ZoneNumber)
+			}
+		})
+		if err != nil {
+			return err
+		}
 
 		name := fmt.Sprintf("%s_zone%d", b.ModuleName, zone.ZoneNumber)
 		config := map[string]interface{}{

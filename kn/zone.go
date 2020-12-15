@@ -100,6 +100,12 @@ func (z *Zone) GetFanMode() FanMode {
 	return (FanMode)(r2&0x00F0) >> 4
 }
 
+func (z *Zone) SetFanMode(fanMode FanMode) error {
+	r2 := z.ReadRegister(REG_MODE) & 0x000F
+	fm := (uint16(fanMode) & 0x000F) << 4
+	return z.WriteRegister(REG_MODE, r2|fm)
+}
+
 func (z *Zone) GetHvacMode() KnMode {
 	r2 := z.ReadRegister(REG_MODE)
 	return (KnMode)(r2 & 0x000F)

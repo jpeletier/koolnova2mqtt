@@ -1,6 +1,9 @@
 package kn
 
-import "koolnova2mqtt/bimap"
+import (
+	"errors"
+	"koolnova2mqtt/bimap"
+)
 
 const NUM_ZONES = 16
 
@@ -79,6 +82,14 @@ func FanMode2Str(fm FanMode) string {
 		st = "unknown"
 	}
 	return st.(string)
+}
+
+func Str2FanMode(st string) (FanMode, error) {
+	fm, ok := FanModes.Get(st)
+	if !ok {
+		return FAN_OFF, errors.New("Unknown fan mode")
+	}
+	return fm.(FanMode), nil
 }
 
 func KnMode2Str(hm KnMode) string {
