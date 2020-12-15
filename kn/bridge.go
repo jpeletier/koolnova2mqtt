@@ -206,16 +206,16 @@ func (b *Bridge) Start() error {
 				}
 				return
 			}
-			err := zone.SetOn(true)
-			if err != nil {
-				log.Printf("Cannot set zone %d to on", zone.ZoneNumber)
-				return
-			}
 			knMode := sys.GetSystemKNMode()
 			knMode = ApplyHvacMode(knMode, message)
 			err = sys.SetSystemKNMode(knMode)
 			if err != nil {
 				log.Printf("Cannot set knmode mode to %x in zone %d", knMode, zone.ZoneNumber)
+			}
+			err := zone.SetOn(true)
+			if err != nil {
+				log.Printf("Cannot set zone %d to on", zone.ZoneNumber)
+				return
 			}
 		})
 		if err != nil {
