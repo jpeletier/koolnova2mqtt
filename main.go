@@ -2,6 +2,7 @@ package main
 
 import (
 	"crypto/tls"
+	"errors"
 	"flag"
 	"fmt"
 	"koolnova2mqtt/kn"
@@ -12,6 +13,7 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+	"sync"
 	"syscall"
 	"time"
 
@@ -19,10 +21,22 @@ import (
 	"github.com/goburrow/modbus"
 )
 
-func buildReader(handler *modbus.RTUClientHandler, client modbus.Client) watcher.ReadRegister {
+func buildReader(handler *modbus.RTUClientHandler, client modbus.Client, lock *sync.RWMutex) watcher.ReadRegister {
 	return func(slaveID byte, address uint16, quantity uint16) (results []byte, err error) {
+		lock.Lock()
+		defer lock.Unlock()
 		handler.SlaveId = slaveID
 		results, err = client.ReadHoldingRegisters(address-1, quantity)
+		return results, err
+	}
+}
+
+func buildWriter(handler *modbus.RTUClientHandler, client modbus.Client, lock *sync.RWMutex) watcher.WriteRegister {
+	return func(slaveID byte, address uint16, value uint16) (results []byte, err error) {
+		lock.Lock()
+		defer lock.Unlock()
+		handler.SlaveId = slaveID
+		results, err = client.WriteSingleRegister(address-1, value)
 		return results, err
 	}
 }
@@ -74,17 +88,41 @@ func main() {
 
 	err := handler.Connect()
 	if err != nil {
-		fmt.Println(err)
+		log.Fatalf("Error connecting modbus: %s", err)
 	}
 	defer handler.Close()
 
 	modbusClient := modbus.NewClient(handler)
 
-	registerReader := buildReader(handler, modbusClient)
+	lock := &sync.RWMutex{}
+	registerReader := buildReader(handler, modbusClient, lock)
+	registerWriter := buildWriter(handler, modbusClient, lock)
 
 	var mqttClient MQTT.Client
 	publish := func(topic string, qos byte, retained bool, payload string) {
-		mqttClient.Publish(topic, qos, retained, payload)
+		client := mqttClient
+		if client == nil {
+			log.Printf("Cannot publish message %q to topic %s. MQTT client is disconnected", payload, topic)
+			return
+		}
+		client.Publish(topic, qos, retained, payload)
+	}
+
+	subscribe := func(topic string, callback func(message string)) error {
+		client := mqttClient
+		if client == nil {
+			log.Printf("Cannot subscribe to topic %s. MQTT client is disconnected", topic)
+			return errors.New("Client is disconnected")
+		}
+		token := client.Subscribe(topic, 0, func(c MQTT.Client, m MQTT.Message) {
+			cbclient := mqttClient
+			if cbclient != client {
+				log.Printf("Cannot invoke callback to topic %s. MQTT client is disconnected", topic)
+			}
+			callback(string(m.Payload()))
+		})
+		token.Wait()
+		return token.Error()
 	}
 
 	var snameList []string
@@ -109,12 +147,14 @@ func main() {
 			log.Fatalf("Error parsing slaveID list")
 		}
 		bridge := kn.NewBridge(&kn.Config{
-			ModuleName:   slaveName,
-			SlaveID:      byte(slaveID),
-			Publish:      publish,
-			TopicPrefix:  *prefix,
-			HassPrefix:   *hassPrefix,
-			ReadRegister: registerReader,
+			ModuleName:    slaveName,
+			SlaveID:       byte(slaveID),
+			Publish:       publish,
+			Subscribe:     subscribe,
+			TopicPrefix:   *prefix,
+			HassPrefix:    *hassPrefix,
+			ReadRegister:  registerReader,
+			WriteRegister: registerWriter,
 		})
 		bridges = append(bridges, bridge)
 	}
@@ -128,26 +168,55 @@ func main() {
 	}
 	tlsConfig := &tls.Config{InsecureSkipVerify: true, ClientAuth: tls.NoClientCert}
 	connOpts.SetTLSConfig(tlsConfig)
+	onConnect := false
 	connOpts.OnConnect = func(c MQTT.Client) {
-		for _, b := range bridges {
-			b.Start()
-		}
+		onConnect = true
+	}
+	connOpts.OnConnectionLost = func(c MQTT.Client, err error) {
+		log.Printf("Connection to MQTT server lost: %s\n", err)
+		mqttClient = nil
 	}
 
-	mqttClient = MQTT.NewClient(connOpts)
+	connectMQTT := func() error {
+		mqttClient = MQTT.NewClient(connOpts)
 
-	if token := mqttClient.Connect(); token.Wait() && token.Error() != nil {
-		panic(token.Error())
-	} else {
-		fmt.Printf("Connected to %s\n", *server)
+		if token := mqttClient.Connect(); token.Wait() && token.Error() != nil {
+			mqttClient = nil
+			return token.Error()
+		} else {
+			log.Printf("Connected to %s\n", *server)
+		}
+		return nil
 	}
 
 	ticker := time.NewTicker(time.Second)
 
 	go func() {
 		for range ticker.C {
-			for _, b := range bridges {
-				b.Tick()
+			if mqttClient == nil {
+				err := connectMQTT()
+				if err != nil {
+					log.Printf("Error connecting to MQTT server: %s\n", err)
+					continue
+				}
+			}
+			client := mqttClient
+			if client != nil && client.IsConnected() {
+				if onConnect {
+					onConnect = false
+					for _, b := range bridges {
+						err := b.Start()
+						if err != nil {
+							log.Printf("Error starting bridge: %s\n", err)
+							client.Disconnect(100)
+							mqttClient = nil
+						}
+					}
+				} else {
+					for _, b := range bridges {
+						b.Tick()
+					}
+				}
 			}
 		}
 	}()

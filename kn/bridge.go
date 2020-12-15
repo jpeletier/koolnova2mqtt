@@ -4,18 +4,22 @@ import (
 	"encoding/json"
 	"fmt"
 	"koolnova2mqtt/watcher"
+	"log"
 	"strconv"
 )
 
 type Publish func(topic string, qos byte, retained bool, payload string)
+type Subscribe func(topic string, callback func(message string)) error
 
 type Config struct {
-	ModuleName   string
-	SlaveID      byte
-	Publish      Publish
-	TopicPrefix  string
-	HassPrefix   string
-	ReadRegister watcher.ReadRegister
+	ModuleName    string
+	SlaveID       byte
+	Publish       Publish
+	Subscribe     Subscribe
+	TopicPrefix   string
+	HassPrefix    string
+	ReadRegister  watcher.ReadRegister
+	WriteRegister watcher.WriteRegister
 }
 
 type Bridge struct {
@@ -51,6 +55,7 @@ func NewBridge(config *Config) *Bridge {
 		RegisterSize: 2,
 		SlaveID:      config.SlaveID,
 		Read:         config.ReadRegister,
+		Write:        config.WriteRegister,
 	})
 
 	sysw := watcher.New(&watcher.Config{
@@ -59,6 +64,7 @@ func NewBridge(config *Config) *Bridge {
 		RegisterSize: 2,
 		SlaveID:      config.SlaveID,
 		Read:         config.ReadRegister,
+		Write:        config.WriteRegister,
 	})
 
 	b := &Bridge{
@@ -70,7 +76,7 @@ func NewBridge(config *Config) *Bridge {
 	return b
 }
 
-func (b *Bridge) Start() {
+func (b *Bridge) Start() error {
 	sys := NewSys(&SysConfig{
 		Watcher: b.sysw,
 	})
@@ -78,13 +84,13 @@ func (b *Bridge) Start() {
 	err := b.zw.Poll()
 	if err != nil {
 		fmt.Println(err)
-		return
+		return err
 	}
 
 	err = b.sysw.Poll()
 	if err != nil {
 		fmt.Println(err)
-		return
+		return err
 	}
 
 	getHVACMode := func() string {
@@ -113,13 +119,22 @@ func (b *Bridge) Start() {
 	}
 
 	zones, err := getActiveZones(b.zw)
+
+	publishHvacMode := func() {
+		for _, zone := range zones {
+			if zone.IsOn() {
+				hvacModeTopic := b.getZoneTopic(zone.ZoneNumber, "hvacMode")
+				mode := getHVACMode()
+				b.Publish(hvacModeTopic, 0, true, mode)
+			}
+		}
+	}
+
 	var hvacModes []string
 	for k, _ := range KnModes.GetForwardMap() {
 		hvacModes = append(hvacModes, k.(string))
 	}
 
-	hvacModeTopic := b.getSysTopic("hvacMode")
-	hvacModeTopicSet := hvacModeTopic + "/set"
 	holdModeTopic := b.getSysTopic("holdMode")
 	holdModeSetTopic := holdModeTopic + "/set"
 
@@ -130,6 +145,8 @@ func (b *Bridge) Start() {
 		targetTempSetTopic := targetTempTopic + "/set"
 		fanModeTopic := b.getZoneTopic(zone.ZoneNumber, "fanMode")
 		fanModeSetTopic := fanModeTopic + "/set"
+		hvacModeTopic := b.getZoneTopic(zone.ZoneNumber, "hvacMode")
+		hvacModeTopicSet := hvacModeTopic + "/set"
 
 		zone.OnCurrentTempChange = func(currentTemp float32) {
 			b.Publish(currentTempTopic, 0, true, fmt.Sprintf("%g", currentTemp))
@@ -143,6 +160,18 @@ func (b *Bridge) Start() {
 		zone.OnKnModeChange = func(knMode KnMode) {
 
 		}
+
+		err = b.Subscribe(targetTempSetTopic, func(message string) {
+			targetTemp, err := strconv.ParseFloat(message, 32)
+			if err != nil {
+				log.Printf("Error parsing targetTemperature in topic %s: %s", targetTempSetTopic, err)
+				return
+			}
+			err = zone.SetTargetTemperature(float32(targetTemp))
+			if err != nil {
+				log.Printf("Cannot set target temperature to %g in zone %d", targetTemp, zone.ZoneNumber)
+			}
+		})
 
 		name := fmt.Sprintf("%s_zone%d", b.ModuleName, zone.ZoneNumber)
 		config := map[string]interface{}{
@@ -191,10 +220,10 @@ func (b *Bridge) Start() {
 	sys.OnSystemEnabledChange = func() {
 		enabled := sys.GetSystemEnabled()
 		b.Publish(b.getSysTopic("enabled"), 0, true, fmt.Sprintf("%t", enabled))
-		b.Publish(hvacModeTopic, 0, true, getHVACMode())
+		publishHvacMode()
 	}
 	sys.OnKnModeChange = func() {
-		b.Publish(hvacModeTopic, 0, true, getHVACMode())
+		publishHvacMode()
 		b.Publish(holdModeTopic, 0, true, getHoldMode())
 	}
 
@@ -204,6 +233,7 @@ func (b *Bridge) Start() {
 	b.Publish(b.getSysTopic("serialBaud"), 0, true, strconv.Itoa(sys.GetBaudRate()))
 	b.Publish(b.getSysTopic("serialParity"), 0, true, sys.GetParity())
 	b.Publish(b.getSysTopic("slaveId"), 0, true, strconv.Itoa(sys.GetSlaveID()))
+	return nil
 }
 
 func (b *Bridge) Tick() {

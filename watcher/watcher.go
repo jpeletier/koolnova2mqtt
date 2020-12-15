@@ -3,15 +3,18 @@ package watcher
 import (
 	"bytes"
 	"errors"
+	"sync"
 )
 
 type ReadRegister func(slaveID byte, address uint16, quantity uint16) (results []byte, err error)
+type WriteRegister func(slaveID byte, address uint16, value uint16) (results []byte, err error)
 
 type Config struct {
 	Address      uint16
 	Quantity     uint16
 	SlaveID      byte
 	Read         ReadRegister
+	Write        WriteRegister
 	RegisterSize int
 }
 
@@ -19,6 +22,7 @@ type Watcher struct {
 	Config
 	state     []byte
 	callbacks map[uint16]func(address uint16)
+	lock      *sync.RWMutex
 }
 
 var ErrIncorrectRegisterSize = errors.New("Incorrect register size")
@@ -29,6 +33,7 @@ func New(config *Config) *Watcher {
 	return &Watcher{
 		Config:    *config,
 		callbacks: make(map[uint16]func(address uint16)),
+		lock:      &sync.RWMutex{},
 	}
 }
 
@@ -37,24 +42,27 @@ func (w *Watcher) RegisterCallback(address uint16, callback func(address uint16)
 }
 
 func (w *Watcher) Poll() error {
+	w.lock.Lock()
 	newState, err := w.Read(w.SlaveID, w.Address, w.Quantity)
 	if err != nil {
+		w.lock.Unlock()
 		return err
 	}
 
 	if len(newState) != int(w.Quantity)*w.RegisterSize {
+		w.lock.Unlock()
 		return ErrIncorrectRegisterSize
 	}
 
 	oldState := w.state
 	w.state = newState
+	var callbackAddresses []uint16
 
 	first := len(oldState) != len(newState)
-	address := w.Address
 	for n := 0; n < len(newState); n += w.RegisterSize {
+		address := uint16(n/w.RegisterSize) + w.Address
 		callback := w.callbacks[address]
 		if callback == nil {
-			address++
 			continue
 		}
 		var oldValue []byte
@@ -65,14 +73,20 @@ func (w *Watcher) Poll() error {
 			oldValue = oldState[n : n+w.RegisterSize]
 		}
 		if bytes.Compare(oldValue, newValue) != 0 {
-			callback(address)
+			callbackAddresses = append(callbackAddresses, address)
 		}
-		address++
+	}
+	w.lock.Unlock()
+	for _, address := range callbackAddresses {
+		callback := w.callbacks[address]
+		callback(address)
 	}
 	return nil
 }
 
 func (w *Watcher) ReadRegister(address uint16) (value []byte) {
+	w.lock.Lock()
+	defer w.lock.Unlock()
 	if address < w.Address || address > w.Address+uint16(w.Quantity) {
 		panic(ErrAddressOutOfRange)
 	}
@@ -82,6 +96,23 @@ func (w *Watcher) ReadRegister(address uint16) (value []byte) {
 	registerOffset := int(address-w.Address) * w.RegisterSize
 	return w.state[registerOffset : registerOffset+w.RegisterSize]
 
+}
+
+func (w *Watcher) WriteRegister(address uint16, value uint16) error {
+	w.lock.Lock()
+	results, err := w.Write(w.SlaveID, address, value)
+	if err != nil {
+		w.lock.Unlock()
+		return err
+	}
+	registerOffset := int(address-w.Address) * w.RegisterSize
+	copy(w.state[registerOffset:registerOffset+w.RegisterSize], results)
+	callback := w.callbacks[address]
+	w.lock.Unlock()
+	if callback != nil {
+		callback(address)
+	}
+	return nil
 }
 
 func (w *Watcher) TriggerCallbacks() {

@@ -56,8 +56,8 @@ var KnModes = bimap.New(map[interface{}]interface{}{
 	"underfloor air heating": MODE_UNDERFLOOR_AIR_HEATING,
 })
 
-const HOLD_MODE_UNDERFLOOR_ONLY = "underfloor only"
-const HOLD_MODE_FAN_ONLY = "fan only"
+const HOLD_MODE_UNDERFLOOR_ONLY = "underfloor"
+const HOLD_MODE_FAN_ONLY = "fan"
 const HOLD_MODE_UNDERFLOOR_AND_FAN = "underfloor and fan"
 
 const HVAC_MODE_OFF = "off"

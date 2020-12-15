@@ -6,6 +6,7 @@ import (
 
 type Watcher interface {
 	ReadRegister(address uint16) (value []byte)
+	WriteRegister(address uint16, value uint16) error
 	RegisterCallback(address uint16, callback func(address uint16))
 }
 
@@ -62,9 +63,12 @@ func (z *Zone) RegisterCallback(num int, f func()) {
 }
 
 func (z *Zone) ReadRegister(num int) uint16 {
-
 	b := z.Watcher.ReadRegister(uint16(z.ZoneNumber*REG_PER_ZONE + num))
 	return binary.BigEndian.Uint16(b)
+}
+
+func (z *Zone) WriteRegister(num int, value uint16) error {
+	return z.Watcher.WriteRegister(uint16(z.ZoneNumber*REG_PER_ZONE+num), value)
 }
 
 func (z *Zone) IsOn() bool {
@@ -87,6 +91,10 @@ func (z *Zone) GetTargetTemperature() float32 {
 	return reg2temp(r3)
 }
 
+func (z *Zone) SetTargetTemperature(targetTemp float32) error {
+	return z.WriteRegister(REG_TARGET_TEMP, temp2reg(targetTemp))
+}
+
 func (z *Zone) GetFanMode() FanMode {
 	r2 := z.ReadRegister(REG_MODE)
 	return (FanMode)(r2&0x00F0) >> 4
@@ -99,4 +107,8 @@ func (z *Zone) GetHvacMode() KnMode {
 
 func reg2temp(r uint16) float32 {
 	return float32(0x00FF&r) / 2.0
+}
+
+func temp2reg(t float32) uint16 {
+	return uint16(t * 2)
 }
