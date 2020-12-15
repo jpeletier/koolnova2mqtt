@@ -65,11 +65,11 @@ func didPanic(f func()) (bool, interface{}, string) {
 
 }
 
-func TestNewBiMap(tx *testing.T) {
+func TestNew(tx *testing.T) {
 	t := ut.BeginTest(tx, false)
 	defer t.FinishTest()
 
-	actual := NewBiMap(nil)
+	actual := New(nil)
 	expected := &BiMap{forward: make(map[interface{}]interface{}), inverse: make(map[interface{}]interface{})}
 	t.Equals(expected, actual)
 }
@@ -77,7 +77,7 @@ func TestNewBiMap(tx *testing.T) {
 func TestBiMap_Insert(tx *testing.T) {
 	t := ut.BeginTest(tx, false)
 	defer t.FinishTest()
-	actual := NewBiMap(nil)
+	actual := New(nil)
 	actual.Insert(key, value)
 
 	fwdExpected := make(map[interface{}]interface{})
@@ -92,7 +92,7 @@ func TestBiMap_Insert(tx *testing.T) {
 func TestBiMap_Exists(tx *testing.T) {
 	t := ut.BeginTest(tx, false)
 	defer t.FinishTest()
-	actual := NewBiMap(nil)
+	actual := New(nil)
 
 	actual.Insert(key, value)
 	t.Assert(!actual.Exists("ARBITARY_KEY"), "Key should not exist")
@@ -102,7 +102,7 @@ func TestBiMap_Exists(tx *testing.T) {
 func TestBiMap_InverseExists(tx *testing.T) {
 	t := ut.BeginTest(tx, false)
 	defer t.FinishTest()
-	actual := NewBiMap(nil)
+	actual := New(nil)
 
 	actual.Insert(key, value)
 	t.Assert(!actual.ExistsInverse("ARBITARY_VALUE"), "Value should not exist")
@@ -112,7 +112,7 @@ func TestBiMap_InverseExists(tx *testing.T) {
 func TestBiMap_Get(tx *testing.T) {
 	t := ut.BeginTest(tx, false)
 	defer t.FinishTest()
-	actual := NewBiMap(nil)
+	actual := New(nil)
 
 	actual.Insert(key, value)
 
@@ -130,7 +130,7 @@ func TestBiMap_Get(tx *testing.T) {
 func TestBiMap_GetInverse(tx *testing.T) {
 	t := ut.BeginTest(tx, false)
 	defer t.FinishTest()
-	actual := NewBiMap(nil)
+	actual := New(nil)
 
 	actual.Insert(key, value)
 
@@ -148,7 +148,7 @@ func TestBiMap_GetInverse(tx *testing.T) {
 func TestBiMap_Size(tx *testing.T) {
 	t := ut.BeginTest(tx, false)
 	defer t.FinishTest()
-	actual := NewBiMap(nil)
+	actual := New(nil)
 
 	t.Equals(0, actual.Size())
 
@@ -160,7 +160,7 @@ func TestBiMap_Size(tx *testing.T) {
 func TestBiMap_Delete(tx *testing.T) {
 	t := ut.BeginTest(tx, false)
 	defer t.FinishTest()
-	actual := NewBiMap(nil)
+	actual := New(nil)
 	dummyKey := "DummyKey"
 	dummyVal := "DummyVal"
 	actual.Insert(key, value)
@@ -189,7 +189,7 @@ func TestBiMap_Delete(tx *testing.T) {
 func TestBiMap_InverseDelete(tx *testing.T) {
 	t := ut.BeginTest(tx, false)
 	defer t.FinishTest()
-	actual := NewBiMap(nil)
+	actual := New(nil)
 	dummyKey := "DummyKey"
 	dummyVal := "DummyVal"
 	actual.Insert(key, value)
@@ -218,7 +218,7 @@ func TestBiMap_InverseDelete(tx *testing.T) {
 func TestBiMap_WithVaryingType(tx *testing.T) {
 	t := ut.BeginTest(tx, false)
 	defer t.FinishTest()
-	actual := NewBiMap(nil)
+	actual := New(nil)
 	dummyKey := "Dummy key"
 	dummyVal := 3
 
@@ -234,7 +234,7 @@ func TestBiMap_WithVaryingType(tx *testing.T) {
 func TestBiMap_MakeImmutable(tx *testing.T) {
 	t := ut.BeginTest(tx, false)
 	defer t.FinishTest()
-	actual := NewBiMap(nil)
+	actual := New(nil)
 	dummyKey := "Dummy key"
 	dummyVal := 3
 
@@ -278,7 +278,7 @@ func TestBiMap_MakeImmutable(tx *testing.T) {
 func TestBiMap_GetForwardMap(tx *testing.T) {
 	t := ut.BeginTest(tx, false)
 	defer t.FinishTest()
-	actual := NewBiMap(nil)
+	actual := New(nil)
 	dummyKey := "Dummy key"
 	dummyVal := 42
 
@@ -295,7 +295,7 @@ func TestBiMap_GetForwardMap(tx *testing.T) {
 func TestBiMap_GetInverseMap(tx *testing.T) {
 	t := ut.BeginTest(tx, false)
 	defer t.FinishTest()
-	actual := NewBiMap(nil)
+	actual := New(nil)
 	dummyKey := "Dummy key"
 	dummyVal := 42
 
@@ -319,7 +319,7 @@ func TestBiMap_Initialize(tx *testing.T) {
 		"c": 3,
 	}
 
-	m := NewBiMap(content)
+	m := New(content)
 
 	v, present := m.Get("a")
 	t.Equals(1, v)
