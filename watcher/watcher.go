@@ -3,18 +3,15 @@ package watcher
 import (
 	"bytes"
 	"errors"
+	"koolnova2mqtt/modbus"
 	"sync"
 )
-
-type ReadRegister func(slaveID byte, address uint16, quantity uint16) (results []byte, err error)
-type WriteRegister func(slaveID byte, address uint16, value uint16) (results []byte, err error)
 
 type Config struct {
 	Address      uint16
 	Quantity     uint16
 	SlaveID      byte
-	Read         ReadRegister
-	Write        WriteRegister
+	Modbus       modbus.Modbus
 	RegisterSize int
 }
 
@@ -43,7 +40,7 @@ func (w *Watcher) RegisterCallback(address uint16, callback func(address uint16)
 
 func (w *Watcher) Poll() error {
 	w.lock.Lock()
-	newState, err := w.Read(w.SlaveID, w.Address, w.Quantity)
+	newState, err := w.Modbus.ReadRegister(w.SlaveID, w.Address, w.Quantity)
 	if err != nil {
 		w.lock.Unlock()
 		return err
@@ -100,7 +97,7 @@ func (w *Watcher) ReadRegister(address uint16) (value []byte) {
 
 func (w *Watcher) WriteRegister(address uint16, value uint16) error {
 	w.lock.Lock()
-	results, err := w.Write(w.SlaveID, address, value)
+	results, err := w.Modbus.WriteRegister(w.SlaveID, address, value)
 	if err != nil {
 		w.lock.Unlock()
 		return err

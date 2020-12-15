@@ -17,6 +17,7 @@ type ZoneConfig struct {
 
 type Zone struct {
 	ZoneConfig
+	OnEnabledChange     func()
 	OnCurrentTempChange func(newTemp float32)
 	OnTargetTempChange  func(newTemp float32)
 	OnFanModeChange     func(newMode FanMode)
@@ -27,6 +28,11 @@ func NewZone(config *ZoneConfig) *Zone {
 	z := &Zone{
 		ZoneConfig: *config,
 	}
+	z.RegisterCallback(REG_ENABLED, func() {
+		if z.OnEnabledChange != nil {
+			z.OnEnabledChange()
+		}
+	})
 	z.RegisterCallback(REG_CURRENT_TEMP, func() {
 		if z.OnCurrentTempChange == nil {
 			return
@@ -45,7 +51,7 @@ func NewZone(config *ZoneConfig) *Zone {
 	})
 	z.RegisterCallback(REG_MODE, func() {
 		fanMode := z.GetFanMode()
-		hvacMode := z.GetHvacMode()
+		hvacMode := z.GetKnMode()
 		if z.OnFanModeChange != nil {
 			z.OnFanModeChange(fanMode)
 		}
@@ -74,6 +80,16 @@ func (z *Zone) WriteRegister(num int, value uint16) error {
 func (z *Zone) IsOn() bool {
 	r1 := z.ReadRegister(REG_ENABLED)
 	return r1&0x1 != 0
+}
+
+func (z *Zone) SetOn(on bool) error {
+	var r1 uint16
+	if on {
+		r1 = 0x3
+	} else {
+		r1 = 0x2
+	}
+	return z.WriteRegister(REG_ENABLED, r1)
 }
 
 func (z *Zone) IsPresent() bool {
@@ -106,7 +122,7 @@ func (z *Zone) SetFanMode(fanMode FanMode) error {
 	return z.WriteRegister(REG_MODE, r2|fm)
 }
 
-func (z *Zone) GetHvacMode() KnMode {
+func (z *Zone) GetKnMode() KnMode {
 	r2 := z.ReadRegister(REG_MODE)
 	return (KnMode)(r2 & 0x000F)
 }

@@ -3,6 +3,7 @@ package kn
 import (
 	"encoding/json"
 	"fmt"
+	"koolnova2mqtt/modbus"
 	"koolnova2mqtt/watcher"
 	"log"
 	"strconv"
@@ -12,14 +13,13 @@ type Publish func(topic string, qos byte, retained bool, payload string)
 type Subscribe func(topic string, callback func(message string)) error
 
 type Config struct {
-	ModuleName    string
-	SlaveID       byte
-	Publish       Publish
-	Subscribe     Subscribe
-	TopicPrefix   string
-	HassPrefix    string
-	ReadRegister  watcher.ReadRegister
-	WriteRegister watcher.WriteRegister
+	ModuleName  string
+	SlaveID     byte
+	Publish     Publish
+	Subscribe   Subscribe
+	TopicPrefix string
+	HassPrefix  string
+	Modbus      modbus.Modbus
 }
 
 type Bridge struct {
@@ -54,8 +54,7 @@ func NewBridge(config *Config) *Bridge {
 		Quantity:     TOTAL_ZONE_REGISTERS,
 		RegisterSize: 2,
 		SlaveID:      config.SlaveID,
-		Read:         config.ReadRegister,
-		Write:        config.WriteRegister,
+		Modbus:       config.Modbus,
 	})
 
 	sysw := watcher.New(&watcher.Config{
@@ -63,8 +62,7 @@ func NewBridge(config *Config) *Bridge {
 		Quantity:     TOTAL_SYS_REGISTERS,
 		RegisterSize: 2,
 		SlaveID:      config.SlaveID,
-		Read:         config.ReadRegister,
-		Write:        config.WriteRegister,
+		Modbus:       config.Modbus,
 	})
 
 	b := &Bridge{
@@ -146,8 +144,18 @@ func (b *Bridge) Start() error {
 		fanModeTopic := b.getZoneTopic(zone.ZoneNumber, "fanMode")
 		fanModeSetTopic := fanModeTopic + "/set"
 		hvacModeTopic := b.getZoneTopic(zone.ZoneNumber, "hvacMode")
-		hvacModeTopicSet := hvacModeTopic + "/set"
+		hvacModeSetTopic := hvacModeTopic + "/set"
 
+		zone.OnEnabledChange = func() {
+			hvacModeTopic := b.getZoneTopic(zone.ZoneNumber, "hvacMode")
+			var mode string
+			if zone.IsOn() {
+				mode = getHVACMode()
+			} else {
+				mode = HVAC_MODE_OFF
+			}
+			b.Publish(hvacModeTopic, 0, true, mode)
+		}
 		zone.OnCurrentTempChange = func(currentTemp float32) {
 			b.Publish(currentTempTopic, 0, true, fmt.Sprintf("%g", currentTemp))
 		}
@@ -190,6 +198,42 @@ func (b *Bridge) Start() error {
 			return err
 		}
 
+		err = b.Subscribe(hvacModeSetTopic, func(message string) {
+			if message == HVAC_MODE_OFF {
+				err := zone.SetOn(false)
+				if err != nil {
+					log.Printf("Cannot set zone %d to off", zone.ZoneNumber)
+				}
+				return
+			}
+			err := zone.SetOn(true)
+			if err != nil {
+				log.Printf("Cannot set zone %d to on", zone.ZoneNumber)
+				return
+			}
+			knMode := sys.GetSystemKNMode()
+			knMode = ApplyHvacMode(knMode, message)
+			err = sys.SetSystemKNMode(knMode)
+			if err != nil {
+				log.Printf("Cannot set knmode mode to %x in zone %d", knMode, zone.ZoneNumber)
+			}
+		})
+		if err != nil {
+			return err
+		}
+
+		err = b.Subscribe(holdModeSetTopic, func(message string) {
+			knMode := sys.GetSystemKNMode()
+			knMode = ApplyHoldMode(knMode, message)
+			err := sys.SetSystemKNMode(knMode)
+			if err != nil {
+				log.Printf("Cannot set knmode mode to %x in zone %d", knMode, zone.ZoneNumber)
+			}
+		})
+		if err != nil {
+			return err
+		}
+
 		name := fmt.Sprintf("%s_zone%d", b.ModuleName, zone.ZoneNumber)
 		config := map[string]interface{}{
 			"name":                      name,
@@ -204,7 +248,7 @@ func (b *Bridge) Start() error {
 			"max_temp":                  35,
 			"modes":                     []string{HVAC_MODE_COOL, HVAC_MODE_HEAT, HVAC_MODE_OFF},
 			"mode_state_topic":          hvacModeTopic,
-			"mode_command_topic":        hvacModeTopicSet,
+			"mode_command_topic":        hvacModeSetTopic,
 			"fan_modes":                 []string{"auto", "low", "medium", "high"},
 			"fan_mode_state_topic":      fanModeTopic,
 			"fan_mode_command_topic":    fanModeSetTopic,

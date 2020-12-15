@@ -99,3 +99,47 @@ func KnMode2Str(hm KnMode) string {
 	}
 	return st.(string)
 }
+
+func ApplyHvacMode(knMode KnMode, hvacMode string) KnMode {
+	switch knMode {
+	case MODE_AIR_COOLING:
+		if hvacMode == HVAC_MODE_HEAT {
+			return MODE_AIR_HEATING
+		}
+	case MODE_AIR_HEATING:
+		if hvacMode == HVAC_MODE_COOL {
+			return MODE_AIR_COOLING
+		}
+	case MODE_UNDERFLOOR_AIR_COOLING:
+		if hvacMode == HVAC_MODE_HEAT {
+			return MODE_UNDERFLOOR_AIR_HEATING
+		}
+	case MODE_UNDERFLOOR_AIR_HEATING, MODE_UNDERFLOOR_HEATING:
+		if hvacMode == HVAC_MODE_COOL {
+			return MODE_UNDERFLOOR_AIR_COOLING
+		}
+	}
+	return knMode
+}
+
+func ApplyHoldMode(knMode KnMode, holdMode string) KnMode {
+	cool := knMode == MODE_AIR_COOLING || knMode == MODE_UNDERFLOOR_AIR_COOLING
+	switch holdMode {
+	case HOLD_MODE_FAN_ONLY:
+		if cool {
+			return MODE_AIR_COOLING
+		}
+		return MODE_AIR_HEATING
+	case HOLD_MODE_UNDERFLOOR_ONLY:
+		if cool {
+			return MODE_UNDERFLOOR_AIR_COOLING
+		}
+		return MODE_UNDERFLOOR_HEATING
+	case HOLD_MODE_UNDERFLOOR_AND_FAN:
+		if cool {
+			return MODE_UNDERFLOOR_AIR_COOLING
+		}
+		return MODE_UNDERFLOOR_AIR_HEATING
+	}
+	return knMode
+}

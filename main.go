@@ -6,40 +6,18 @@ import (
 	"flag"
 	"fmt"
 	"koolnova2mqtt/kn"
-	"koolnova2mqtt/watcher"
+	"koolnova2mqtt/modbus"
 	"log"
 	"os"
 	"os/signal"
 	"regexp"
 	"strconv"
 	"strings"
-	"sync"
 	"syscall"
 	"time"
 
 	MQTT "github.com/eclipse/paho.mqtt.golang"
-	"github.com/goburrow/modbus"
 )
-
-func buildReader(handler *modbus.RTUClientHandler, client modbus.Client, lock *sync.RWMutex) watcher.ReadRegister {
-	return func(slaveID byte, address uint16, quantity uint16) (results []byte, err error) {
-		lock.Lock()
-		defer lock.Unlock()
-		handler.SlaveId = slaveID
-		results, err = client.ReadHoldingRegisters(address-1, quantity)
-		return results, err
-	}
-}
-
-func buildWriter(handler *modbus.RTUClientHandler, client modbus.Client, lock *sync.RWMutex) watcher.WriteRegister {
-	return func(slaveID byte, address uint16, value uint16) (results []byte, err error) {
-		lock.Lock()
-		defer lock.Unlock()
-		handler.SlaveId = slaveID
-		results, err = client.WriteSingleRegister(address-1, value)
-		return results, err
-	}
-}
 
 func generateNodeName(slaveID string, port string) string {
 	reg, err := regexp.Compile("[^a-zA-Z0-9]+")
@@ -79,24 +57,18 @@ func main() {
 
 	flag.Parse()
 
-	handler := modbus.NewRTUClientHandler(*modbusPort)
-	handler.BaudRate = *modbusPortBaudRate
-	handler.DataBits = *modbusDataBits
-	handler.Parity = *modbusPortParity
-	handler.StopBits = *modbusStopBits
-	handler.Timeout = 5 * time.Second
-
-	err := handler.Connect()
+	mb, err := modbus.New(&modbus.Config{
+		Port:     *modbusPort,
+		BaudRate: *modbusPortBaudRate,
+		DataBits: *modbusDataBits,
+		Parity:   *modbusPortParity,
+		StopBits: *modbusStopBits,
+		Timeout:  5 * time.Second,
+	})
 	if err != nil {
-		log.Fatalf("Error connecting modbus: %s", err)
+		log.Fatalf("Error initializing modbus: %s", err)
 	}
-	defer handler.Close()
-
-	modbusClient := modbus.NewClient(handler)
-
-	lock := &sync.RWMutex{}
-	registerReader := buildReader(handler, modbusClient, lock)
-	registerWriter := buildWriter(handler, modbusClient, lock)
+	defer mb.Close()
 
 	var mqttClient MQTT.Client
 	publish := func(topic string, qos byte, retained bool, payload string) {
@@ -147,14 +119,13 @@ func main() {
 			log.Fatalf("Error parsing slaveID list")
 		}
 		bridge := kn.NewBridge(&kn.Config{
-			ModuleName:    slaveName,
-			SlaveID:       byte(slaveID),
-			Publish:       publish,
-			Subscribe:     subscribe,
-			TopicPrefix:   *prefix,
-			HassPrefix:    *hassPrefix,
-			ReadRegister:  registerReader,
-			WriteRegister: registerWriter,
+			ModuleName:  slaveName,
+			SlaveID:     byte(slaveID),
+			Publish:     publish,
+			Subscribe:   subscribe,
+			TopicPrefix: *prefix,
+			HassPrefix:  *hassPrefix,
+			Modbus:      mb,
 		})
 		bridges = append(bridges, bridge)
 	}

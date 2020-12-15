@@ -68,6 +68,10 @@ func (s *Sys) ReadRegister(n int) int {
 	return int(r[1])
 }
 
+func (s *Sys) WriteRegister(n int, value uint16) error {
+	return s.Watcher.WriteRegister(uint16(n), value)
+}
+
 func (s *Sys) GetAirflow(ac ACMachine) int {
 	r := s.ReadRegister(REG_AIRFLOW + int(ac) - 1)
 	return r
@@ -123,4 +127,8 @@ func (s *Sys) GetSystemEnabled() bool {
 func (s *Sys) GetSystemKNMode() KnMode {
 	r := s.ReadRegister(REG_SYS_KN_MODE)
 	return KnMode(r)
+}
+
+func (s *Sys) SetSystemKNMode(knMode KnMode) error {
+	return s.WriteRegister(REG_SYS_KN_MODE, uint16(knMode))
 }
