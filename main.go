@@ -182,6 +182,7 @@ func main() {
 							log.Printf("Error starting bridge: %s\n", err)
 							client.Disconnect(100)
 							mqttClient = nil
+							break
 						} else {
 							started = true
 						}
