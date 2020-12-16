@@ -63,7 +63,7 @@ func main() {
 		DataBits: *modbusDataBits,
 		Parity:   *modbusPortParity,
 		StopBits: *modbusStopBits,
-		Timeout:  5 * time.Second,
+		Timeout:  200 * time.Millisecond,
 	})
 	if err != nil {
 		log.Fatalf("Error initializing modbus: %s", err)

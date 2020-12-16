@@ -1,10 +1,11 @@
 package modbus
 
 import (
+	"log"
 	"sync"
 	"time"
 
-	gmodbus "github.com/goburrow/modbus"
+	gmodbus "github.com/wz2b/modbus"
 )
 
 type Modbus interface {
@@ -55,9 +56,16 @@ func (mb *modbus) ReadRegister(slaveID byte, address uint16, quantity uint16) (r
 		return nil, err
 	}
 	defer mb.handler.Close()
-	results, err = mb.client.ReadHoldingRegisters(address-1, quantity)
+	retries := 5
+	for retries > 0 {
+		results, err = mb.client.ReadHoldingRegisters(address-1, quantity)
+		if err == nil {
+			break
+		}
+		retries--
+		log.Printf("Warning: Retried read due to %s\n", err)
+	}
 	return results, err
-
 }
 
 func (mb *modbus) WriteRegister(slaveID byte, address uint16, value uint16) (results []byte, err error) {
@@ -69,7 +77,15 @@ func (mb *modbus) WriteRegister(slaveID byte, address uint16, value uint16) (res
 		return nil, err
 	}
 	defer mb.handler.Close()
-	results, err = mb.client.WriteSingleRegister(address-1, value)
+	retries := 5
+	for retries > 0 {
+		results, err = mb.client.WriteSingleRegister(address-1, value)
+		if err == nil {
+			break
+		}
+		retries--
+		log.Printf("Warning: Retried write due to %s\n", err)
+	}
 	return results, err
 
 }

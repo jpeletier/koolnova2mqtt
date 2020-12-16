@@ -9,4 +9,5 @@ require (
 	github.com/goburrow/modbus v0.1.0
 	github.com/goburrow/serial v0.1.0 // indirect
 	github.com/stretchr/testify v1.6.1
+	github.com/wz2b/modbus v0.1.1
 )
