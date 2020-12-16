@@ -36,11 +36,6 @@ func New(config *Config) (Modbus, error) {
 	handler.StopBits = config.StopBits
 	handler.Timeout = config.Timeout
 
-	err := handler.Connect()
-	if err != nil {
-		return nil, err
-	}
-
 	return &modbus{
 		handler: handler,
 		client:  gmodbus.NewClient(handler),
@@ -55,6 +50,11 @@ func (mb *modbus) ReadRegister(slaveID byte, address uint16, quantity uint16) (r
 	mb.lock.Lock()
 	defer mb.lock.Unlock()
 	mb.handler.SlaveId = slaveID
+	err = mb.handler.Connect()
+	if err != nil {
+		return nil, err
+	}
+	defer mb.handler.Close()
 	results, err = mb.client.ReadHoldingRegisters(address-1, quantity)
 	return results, err
 
@@ -64,6 +64,11 @@ func (mb *modbus) WriteRegister(slaveID byte, address uint16, value uint16) (res
 	mb.lock.Lock()
 	defer mb.lock.Unlock()
 	mb.handler.SlaveId = slaveID
+	err = mb.handler.Connect()
+	if err != nil {
+		return nil, err
+	}
+	defer mb.handler.Close()
 	results, err = mb.client.WriteSingleRegister(address-1, value)
 	return results, err
 

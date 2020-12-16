@@ -63,18 +63,18 @@ func NewZone(config *ZoneConfig) *Zone {
 }
 
 func (z *Zone) RegisterCallback(num int, f func()) {
-	z.Watcher.RegisterCallback(uint16(z.ZoneNumber*REG_PER_ZONE+num), func(address uint16) {
+	z.Watcher.RegisterCallback(uint16((z.ZoneNumber-1)*REG_PER_ZONE+num), func(address uint16) {
 		f()
 	})
 }
 
 func (z *Zone) ReadRegister(num int) uint16 {
-	b := z.Watcher.ReadRegister(uint16(z.ZoneNumber*REG_PER_ZONE + num))
+	b := z.Watcher.ReadRegister(uint16((z.ZoneNumber-1)*REG_PER_ZONE + num))
 	return binary.BigEndian.Uint16(b)
 }
 
 func (z *Zone) WriteRegister(num int, value uint16) error {
-	return z.Watcher.WriteRegister(uint16(z.ZoneNumber*REG_PER_ZONE+num), value)
+	return z.Watcher.WriteRegister(uint16((z.ZoneNumber-1)*REG_PER_ZONE+num), value)
 }
 
 func (z *Zone) IsOn() bool {

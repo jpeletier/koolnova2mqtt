@@ -143,9 +143,11 @@ func main() {
 	connOpts.OnConnect = func(c MQTT.Client) {
 		onConnect = true
 	}
+	var started bool
 	connOpts.OnConnectionLost = func(c MQTT.Client, err error) {
 		log.Printf("Connection to MQTT server lost: %s\n", err)
 		mqttClient = nil
+		started = false
 	}
 
 	connectMQTT := func() error {
@@ -160,8 +162,7 @@ func main() {
 		return nil
 	}
 
-	ticker := time.NewTicker(time.Second)
-
+	ticker := time.NewTicker(2 * time.Second)
 	go func() {
 		for range ticker.C {
 			if mqttClient == nil {
@@ -181,11 +182,15 @@ func main() {
 							log.Printf("Error starting bridge: %s\n", err)
 							client.Disconnect(100)
 							mqttClient = nil
+						} else {
+							started = true
 						}
 					}
 				} else {
-					for _, b := range bridges {
-						b.Tick()
+					if started {
+						for _, b := range bridges {
+							b.Tick()
+						}
 					}
 				}
 			}

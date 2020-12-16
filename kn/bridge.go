@@ -34,62 +34,56 @@ func getActiveZones(w Watcher) ([]*Zone, error) {
 
 	for n := 0; n < NUM_ZONES; n++ {
 		zone := NewZone(&ZoneConfig{
-			ZoneNumber: n,
+			ZoneNumber: n + 1,
 			Watcher:    w,
 		})
 		isPresent := zone.IsPresent()
 		if isPresent {
 			zones = append(zones, zone)
-			temp := zone.GetCurrentTemperature()
-			fmt.Printf("Zone %d is present. Temperature %g ºC\n", zone.ZoneNumber, temp)
 		}
 	}
 	return zones, nil
 }
 
 func NewBridge(config *Config) *Bridge {
+	b := &Bridge{
+		Config: *config,
+	}
+	return b
+}
+
+func (b *Bridge) Start() error {
 
 	zw := watcher.New(&watcher.Config{
 		Address:      FIRST_ZONE_REGISTER,
 		Quantity:     TOTAL_ZONE_REGISTERS,
 		RegisterSize: 2,
-		SlaveID:      config.SlaveID,
-		Modbus:       config.Modbus,
+		SlaveID:      b.SlaveID,
+		Modbus:       b.Modbus,
 	})
 
 	sysw := watcher.New(&watcher.Config{
 		Address:      FIRST_SYS_REGISTER,
 		Quantity:     TOTAL_SYS_REGISTERS,
 		RegisterSize: 2,
-		SlaveID:      config.SlaveID,
-		Modbus:       config.Modbus,
+		SlaveID:      b.SlaveID,
+		Modbus:       b.Modbus,
 	})
-
-	b := &Bridge{
-		Config: *config,
-		zw:     zw,
-		sysw:   sysw,
-	}
-
-	return b
-}
-
-func (b *Bridge) Start() error {
+	b.zw = zw
+	b.sysw = sysw
 	sys := NewSys(&SysConfig{
 		Watcher: b.sysw,
 	})
 
-	err := b.zw.Poll()
+	log.Printf("Starting bridge for %s\n", b.ModuleName)
+	err := b.Tick()
 	if err != nil {
-		fmt.Println(err)
 		return err
 	}
 
-	err = b.sysw.Poll()
-	if err != nil {
-		fmt.Println(err)
-		return err
-	}
+	zones, err := getActiveZones(b.zw)
+	log.Printf("%d zones are present in %s\n", len(zones), b.ModuleName)
+	b.zw.Resize(len(zones) * REG_PER_ZONE)
 
 	getHVACMode := func() string {
 		if !sys.GetSystemEnabled() {
@@ -116,8 +110,6 @@ func (b *Bridge) Start() error {
 		return "unknown"
 	}
 
-	zones, err := getActiveZones(b.zw)
-
 	publishHvacMode := func() {
 		for _, zone := range zones {
 			if zone.IsOn() {
@@ -126,11 +118,6 @@ func (b *Bridge) Start() error {
 				b.Publish(hvacModeTopic, 0, true, mode)
 			}
 		}
-	}
-
-	var hvacModes []string
-	for k, _ := range KnModes.GetForwardMap() {
-		hvacModes = append(hvacModes, k.(string))
 	}
 
 	holdModeTopic := b.getSysTopic("holdMode")
@@ -297,18 +284,19 @@ func (b *Bridge) Start() error {
 	return nil
 }
 
-func (b *Bridge) Tick() {
+func (b *Bridge) Tick() error {
 	err := b.zw.Poll()
 	if err != nil {
-		fmt.Println(err)
-		return
+		log.Printf("Timeout polling %s zone registers: %s\n", b.ModuleName, err)
+		return err
 	}
 
 	err = b.sysw.Poll()
 	if err != nil {
-		fmt.Println(err)
-		return
+		log.Printf("Timeout polling %s system registers: %s\n", b.ModuleName, err)
+		return err
 	}
+	return nil
 }
 
 func (b *Bridge) getZoneTopic(zoneNum int, subtopic string) string {

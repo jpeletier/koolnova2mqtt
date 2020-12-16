@@ -117,3 +117,20 @@ func (w *Watcher) TriggerCallbacks() {
 		callback(address)
 	}
 }
+
+func (w *Watcher) Resize(newQuantity int) {
+	w.lock.Lock()
+	defer w.lock.Unlock()
+	if newQuantity < int(w.Quantity) {
+		w.state = w.state[:newQuantity*w.RegisterSize]
+		for address, _ := range w.callbacks {
+			if address > w.Address+uint16(newQuantity)-1 {
+				delete(w.callbacks, address)
+			}
+		}
+	} else {
+		w.state = nil
+	}
+
+	w.Quantity = uint16(newQuantity)
+}
