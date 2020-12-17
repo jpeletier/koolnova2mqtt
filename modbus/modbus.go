@@ -33,22 +33,6 @@ func throttle(ms int) {
 	time.Sleep(time.Duration(ms) * time.Millisecond)
 }
 
-func retry(f func() error) (err error) {
-	retries := 5
-	delay := 100
-	for retries > 0 {
-		err = f()
-		if err == nil {
-			return nil
-		}
-		retries--
-		log.Printf("Retried modbus operation due to %s. %d retries left\n", err, retries)
-		throttle(delay)
-		delay *= 2
-	}
-	return err
-}
-
 func New(config *Config) (Modbus, error) {
 	handler := gmodbus.NewRTUClientHandler(config.Port)
 	handler.BaudRate = config.BaudRate
@@ -60,7 +44,7 @@ func New(config *Config) (Modbus, error) {
 	return &modbus{
 		handler: handler,
 		client:  gmodbus.NewClient(handler),
-	}, nil
+	}, handler.Connect()
 }
 
 func (mb *modbus) Close() error {
@@ -68,35 +52,43 @@ func (mb *modbus) Close() error {
 }
 
 func (mb *modbus) ReadRegister(slaveID byte, address uint16, quantity uint16) (results []byte, err error) {
-	mb.lock.Lock()
-	defer mb.lock.Unlock()
-	mb.handler.SlaveId = slaveID
-	err = mb.handler.Connect()
-	if err != nil {
-		return nil, err
-	}
-	defer mb.handler.Close()
-	retry(func() (err error) {
+	err = mb.try(slaveID, func() (err error) {
 		results, err = mb.client.ReadHoldingRegisters(address-1, quantity)
 		return err
 	})
-	throttle(200)
 	return results, err
 }
 
 func (mb *modbus) WriteRegister(slaveID byte, address uint16, value uint16) (results []byte, err error) {
-	mb.lock.Lock()
-	defer mb.lock.Unlock()
-	mb.handler.SlaveId = slaveID
-	err = mb.handler.Connect()
-	if err != nil {
-		return nil, err
-	}
-	defer mb.handler.Close()
-	retry(func() (err error) {
+	err = mb.try(slaveID, func() (err error) {
 		results, err = mb.client.WriteSingleRegister(address-1, value)
 		return err
 	})
-	throttle(200)
 	return results, err
+}
+
+func (mb *modbus) try(slaveID byte, f func() error) (err error) {
+	mb.lock.Lock()
+	defer mb.lock.Unlock()
+	defer throttle(100)
+	mb.handler.SlaveId = slaveID
+	retries := 5
+	delay := 100
+	for retries > 0 {
+		err = f()
+		if err == nil {
+			return nil
+		}
+		log.Printf("Retried modbus operation due to %s. %d retries left\n", err, retries)
+		mb.handler.Close()
+		throttle(100)
+		err = mb.handler.Connect()
+		if err != nil {
+			return err
+		}
+		retries--
+		throttle(delay)
+		delay *= 2
+	}
+	return err
 }
