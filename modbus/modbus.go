@@ -29,6 +29,26 @@ type modbus struct {
 	lock    sync.RWMutex
 }
 
+func throttle(ms int) {
+	time.Sleep(time.Duration(ms) * time.Millisecond)
+}
+
+func retry(f func() error) (err error) {
+	retries := 5
+	delay := 100
+	for retries > 0 {
+		err = f()
+		if err == nil {
+			return nil
+		}
+		retries--
+		log.Printf("Retried modbus operation due to %s. %d retries left\n", err, retries)
+		throttle(delay)
+		delay *= 2
+	}
+	return err
+}
+
 func New(config *Config) (Modbus, error) {
 	handler := gmodbus.NewRTUClientHandler(config.Port)
 	handler.BaudRate = config.BaudRate
@@ -56,15 +76,11 @@ func (mb *modbus) ReadRegister(slaveID byte, address uint16, quantity uint16) (r
 		return nil, err
 	}
 	defer mb.handler.Close()
-	retries := 5
-	for retries > 0 {
+	retry(func() (err error) {
 		results, err = mb.client.ReadHoldingRegisters(address-1, quantity)
-		if err == nil {
-			break
-		}
-		retries--
-		log.Printf("Warning: Retried read due to %s\n", err)
-	}
+		return err
+	})
+	throttle(200)
 	return results, err
 }
 
@@ -77,15 +93,10 @@ func (mb *modbus) WriteRegister(slaveID byte, address uint16, value uint16) (res
 		return nil, err
 	}
 	defer mb.handler.Close()
-	retries := 5
-	for retries > 0 {
+	retry(func() (err error) {
 		results, err = mb.client.WriteSingleRegister(address-1, value)
-		if err == nil {
-			break
-		}
-		retries--
-		log.Printf("Warning: Retried write due to %s\n", err)
-	}
+		return err
+	})
+	throttle(200)
 	return results, err
-
 }
