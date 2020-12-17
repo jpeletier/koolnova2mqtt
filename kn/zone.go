@@ -2,6 +2,9 @@ package kn
 
 import (
 	"encoding/binary"
+	"math"
+
+	average "github.com/RobinUS2/golang-moving-average"
 )
 
 type Watcher interface {
@@ -22,24 +25,19 @@ type Zone struct {
 	OnTargetTempChange  func(newTemp float32)
 	OnFanModeChange     func(newMode FanMode)
 	OnKnModeChange      func(newMode KnMode)
+	lastTemp            float32
+	temp                *average.MovingAverage
 }
 
 func NewZone(config *ZoneConfig) *Zone {
 	z := &Zone{
 		ZoneConfig: *config,
+		temp:       average.New(300),
 	}
 	z.RegisterCallback(REG_ENABLED, func() {
 		if z.OnEnabledChange != nil {
 			z.OnEnabledChange()
 		}
-	})
-	z.RegisterCallback(REG_CURRENT_TEMP, func() {
-		if z.OnCurrentTempChange == nil {
-			return
-		}
-
-		temp := z.GetCurrentTemperature()
-		z.OnCurrentTempChange(temp)
 	})
 	z.RegisterCallback(REG_TARGET_TEMP, func() {
 		if z.OnTargetTempChange == nil {
@@ -97,9 +95,25 @@ func (z *Zone) IsPresent() bool {
 	return r1&0x2 != 0
 }
 
-func (z *Zone) GetCurrentTemperature() float32 {
+func (z *Zone) getCurrentTemperature() float32 {
 	r4 := z.ReadRegister(REG_CURRENT_TEMP)
 	return reg2temp(r4)
+}
+
+func (z *Zone) GetCurrentTemperature() float32 {
+	return float32(math.Round(z.temp.Avg()*10) / 10)
+}
+
+func (z *Zone) SampleTemperature() {
+	sample := z.getCurrentTemperature()
+	z.temp.Add(float64(sample))
+	if z.OnCurrentTempChange != nil {
+		t := z.GetCurrentTemperature()
+		if t != z.lastTemp {
+			z.lastTemp = t
+			z.OnCurrentTempChange(t)
+		}
+	}
 }
 
 func (z *Zone) GetTargetTemperature() float32 {

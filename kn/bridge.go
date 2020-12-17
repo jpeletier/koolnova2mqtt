@@ -27,6 +27,7 @@ type Bridge struct {
 	zw      *watcher.Watcher
 	sysw    *watcher.Watcher
 	refresh func()
+	zones   []*Zone
 }
 
 func getActiveZones(w Watcher) ([]*Zone, error) {
@@ -76,12 +77,13 @@ func (b *Bridge) Start() error {
 	})
 
 	log.Printf("Starting bridge for %s\n", b.ModuleName)
-	err := b.Tick()
+	err := b.poll()
 	if err != nil {
 		return err
 	}
 
 	zones, err := getActiveZones(b.zw)
+	b.zones = zones
 	log.Printf("%d zones are present in %s\n", len(zones), b.ModuleName)
 	b.zw.Resize(len(zones) * REG_PER_ZONE)
 
@@ -225,7 +227,7 @@ func (b *Bridge) Start() error {
 		config := map[string]interface{}{
 			"name":                      name,
 			"current_temperature_topic": currentTempTopic,
-			"precision":                 0.5,
+			"precision":                 0.1,
 			"temperature_state_topic":   targetTempTopic,
 			"temperature_command_topic": targetTempSetTopic,
 			"temperature_unit":          "C",
@@ -284,7 +286,7 @@ func (b *Bridge) Start() error {
 	return nil
 }
 
-func (b *Bridge) Tick() error {
+func (b *Bridge) poll() error {
 	err := b.zw.Poll()
 	if err != nil {
 		log.Printf("Timeout polling %s zone registers: %s\n", b.ModuleName, err)
@@ -295,6 +297,17 @@ func (b *Bridge) Tick() error {
 	if err != nil {
 		log.Printf("Timeout polling %s system registers: %s\n", b.ModuleName, err)
 		return err
+	}
+	return nil
+}
+
+func (b *Bridge) Tick() error {
+	err := b.poll()
+	if err != nil {
+		return err
+	}
+	for _, z := range b.zones {
+		z.SampleTemperature()
 	}
 	return nil
 }
