@@ -9,14 +9,15 @@ import (
 	"strconv"
 )
 
-type Publish func(topic string, qos byte, retained bool, payload string)
-type Subscribe func(topic string, callback func(message string)) error
+type MqttClient interface {
+	Publish(topic string, qos byte, retained bool, payload string) error
+	Subscribe(topic string, callback func(message string)) error
+}
 
 type Config struct {
 	ModuleName  string
 	SlaveID     byte
-	Publish     Publish
-	Subscribe   Subscribe
+	Mqtt        MqttClient
 	TopicPrefix string
 	HassPrefix  string
 	Modbus      modbus.Modbus
@@ -117,7 +118,7 @@ func (b *Bridge) Start() error {
 			if zone.IsOn() {
 				hvacModeTopic := b.getZoneTopic(zone.ZoneNumber, "hvacMode")
 				mode := getHVACMode()
-				b.Publish(hvacModeTopic, 0, true, mode)
+				b.Mqtt.Publish(hvacModeTopic, 0, true, mode)
 			}
 		}
 	}
@@ -143,22 +144,22 @@ func (b *Bridge) Start() error {
 			} else {
 				mode = HVAC_MODE_OFF
 			}
-			b.Publish(hvacModeTopic, 0, true, mode)
+			b.Mqtt.Publish(hvacModeTopic, 0, true, mode)
 		}
 		zone.OnCurrentTempChange = func(currentTemp float32) {
-			b.Publish(currentTempTopic, 0, true, fmt.Sprintf("%g", currentTemp))
+			b.Mqtt.Publish(currentTempTopic, 0, true, fmt.Sprintf("%g", currentTemp))
 		}
 		zone.OnTargetTempChange = func(targetTemp float32) {
-			b.Publish(targetTempTopic, 0, true, fmt.Sprintf("%g", targetTemp))
+			b.Mqtt.Publish(targetTempTopic, 0, true, fmt.Sprintf("%g", targetTemp))
 		}
 		zone.OnFanModeChange = func(fanMode FanMode) {
-			b.Publish(fanModeTopic, 0, true, FanMode2Str(fanMode))
+			b.Mqtt.Publish(fanModeTopic, 0, true, FanMode2Str(fanMode))
 		}
 		zone.OnKnModeChange = func(knMode KnMode) {
 
 		}
 
-		err = b.Subscribe(targetTempSetTopic, func(message string) {
+		err = b.Mqtt.Subscribe(targetTempSetTopic, func(message string) {
 			targetTemp, err := strconv.ParseFloat(message, 32)
 			if err != nil {
 				log.Printf("Error parsing targetTemperature in topic %s: %s", targetTempSetTopic, err)
@@ -173,7 +174,7 @@ func (b *Bridge) Start() error {
 			return err
 		}
 
-		err = b.Subscribe(fanModeSetTopic, func(message string) {
+		err = b.Mqtt.Subscribe(fanModeSetTopic, func(message string) {
 			fm, err := Str2FanMode(message)
 			if err != nil {
 				log.Printf("Unknown fan mode %q in message to zone %d", message, zone.ZoneNumber)
@@ -187,7 +188,7 @@ func (b *Bridge) Start() error {
 			return err
 		}
 
-		err = b.Subscribe(hvacModeSetTopic, func(message string) {
+		err = b.Mqtt.Subscribe(hvacModeSetTopic, func(message string) {
 			if message == HVAC_MODE_OFF {
 				err := zone.SetOn(false)
 				if err != nil {
@@ -211,7 +212,7 @@ func (b *Bridge) Start() error {
 			return err
 		}
 
-		err = b.Subscribe(holdModeSetTopic, func(message string) {
+		err = b.Mqtt.Subscribe(holdModeSetTopic, func(message string) {
 			knMode := sys.GetSystemKNMode()
 			knMode = ApplyHoldMode(knMode, message)
 			err := sys.SetSystemKNMode(knMode)
@@ -248,56 +249,55 @@ func (b *Bridge) Start() error {
 
 		configJSON, _ := json.Marshal(config)
 		// <discovery_prefix>/<component>/[<node_id>/]<object_id>/config
-		b.Publish(fmt.Sprintf("%s/climate/%s/zone%d/config", b.HassPrefix, b.ModuleName, zone.ZoneNumber), 0, true, string(configJSON))
+		b.Mqtt.Publish(fmt.Sprintf("%s/climate/%s/zone%d/config", b.HassPrefix, b.ModuleName, zone.ZoneNumber), 0, true, string(configJSON))
 
 		// temperature sensor configuration:
 		name = fmt.Sprintf("%s_zone%d_temp", b.ModuleName, zone.ZoneNumber)
 		config = map[string]interface{}{
 			"name":                name,
 			"device_class":        "temperature",
-			"expire_after":        60,
 			"state_topic":         currentTempTopic,
 			"unit_of_measurement": "ºC",
 			"unique_id":           name,
 		}
 
 		configJSON, _ = json.Marshal(config)
-		b.Publish(fmt.Sprintf("%s/sensor/%s/zone%d_temp/config", b.HassPrefix, b.ModuleName, zone.ZoneNumber), 0, true, string(configJSON))
+		b.Mqtt.Publish(fmt.Sprintf("%s/sensor/%s/zone%d_temp/config", b.HassPrefix, b.ModuleName, zone.ZoneNumber), 0, true, string(configJSON))
 
 	}
 
 	sys.OnACAirflowChange = func(ac ACMachine) {
 		airflow := sys.GetAirflow(ac)
-		b.Publish(b.getACTopic(ac, "airflow"), 0, true, strconv.Itoa(airflow))
+		b.Mqtt.Publish(b.getACTopic(ac, "airflow"), 0, true, strconv.Itoa(airflow))
 	}
 	sys.OnACTargetTempChange = func(ac ACMachine) {
 		targetTemp := sys.GetMachineTargetTemp(ac)
-		b.Publish(b.getACTopic(ac, "targetTemp"), 0, true, fmt.Sprintf("%g", targetTemp))
+		b.Mqtt.Publish(b.getACTopic(ac, "targetTemp"), 0, true, fmt.Sprintf("%g", targetTemp))
 	}
 	sys.OnACTargetFanModeChange = func(ac ACMachine) {
 		targetAirflow := sys.GetTargetFanMode(ac)
-		b.Publish(b.getACTopic(ac, "fanMode"), 0, true, FanMode2Str(targetAirflow))
+		b.Mqtt.Publish(b.getACTopic(ac, "fanMode"), 0, true, FanMode2Str(targetAirflow))
 	}
 	sys.OnEfficiencyChange = func() {
 		efficiency := sys.GetEfficiency()
-		b.Publish(b.getSysTopic("efficiency"), 0, true, strconv.Itoa(efficiency))
+		b.Mqtt.Publish(b.getSysTopic("efficiency"), 0, true, strconv.Itoa(efficiency))
 	}
 	sys.OnSystemEnabledChange = func() {
 		enabled := sys.GetSystemEnabled()
-		b.Publish(b.getSysTopic("enabled"), 0, true, fmt.Sprintf("%t", enabled))
+		b.Mqtt.Publish(b.getSysTopic("enabled"), 0, true, fmt.Sprintf("%t", enabled))
 		publishHvacMode()
 	}
 	sys.OnKnModeChange = func() {
 		publishHvacMode()
-		b.Publish(holdModeTopic, 0, true, getHoldMode())
+		b.Mqtt.Publish(holdModeTopic, 0, true, getHoldMode())
 	}
 
 	b.zw.TriggerCallbacks()
 	b.sysw.TriggerCallbacks()
 
-	b.Publish(b.getSysTopic("serialBaud"), 0, true, strconv.Itoa(sys.GetBaudRate()))
-	b.Publish(b.getSysTopic("serialParity"), 0, true, sys.GetParity())
-	b.Publish(b.getSysTopic("slaveId"), 0, true, strconv.Itoa(sys.GetSlaveID()))
+	b.Mqtt.Publish(b.getSysTopic("serialBaud"), 0, true, strconv.Itoa(sys.GetBaudRate()))
+	b.Mqtt.Publish(b.getSysTopic("serialParity"), 0, true, sys.GetParity())
+	b.Mqtt.Publish(b.getSysTopic("slaveId"), 0, true, strconv.Itoa(sys.GetSlaveID()))
 	return nil
 }
 
