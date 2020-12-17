@@ -249,6 +249,21 @@ func (b *Bridge) Start() error {
 		configJSON, _ := json.Marshal(config)
 		// <discovery_prefix>/<component>/[<node_id>/]<object_id>/config
 		b.Publish(fmt.Sprintf("%s/climate/%s/zone%d/config", b.HassPrefix, b.ModuleName, zone.ZoneNumber), 0, true, string(configJSON))
+
+		// temperature sensor configuration:
+		name = fmt.Sprintf("%s_zone%d_temp", b.ModuleName, zone.ZoneNumber)
+		config = map[string]interface{}{
+			"name":                name,
+			"device_class":        "temperature",
+			"expire_after":        60,
+			"state_topic":         currentTempTopic,
+			"unit_of_measurement": "ºC",
+			"unique_id":           name,
+		}
+
+		configJSON, _ = json.Marshal(config)
+		b.Publish(fmt.Sprintf("%s/sensor/%s/zone%d_temp/config", b.HassPrefix, b.ModuleName, zone.ZoneNumber), 0, true, string(configJSON))
+
 	}
 
 	sys.OnACAirflowChange = func(ac ACMachine) {
