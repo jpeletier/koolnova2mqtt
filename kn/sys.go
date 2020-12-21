@@ -6,7 +6,10 @@ type SysConfig struct {
 	Watcher Watcher
 }
 
-type Sys struct {
+// SysDriver watches system registers and allows
+// to read/change the module configuration
+// notifies callbacks when specific system registers change
+type SysDriver struct {
 	SysConfig
 	OnACAirflowChange       func(ac ACMachine)
 	OnACTargetTempChange    func(ac ACMachine)
@@ -18,8 +21,8 @@ type Sys struct {
 
 var ErrUnknownSerialConfig = errors.New("Uknown serial configuration")
 
-func NewSys(config *SysConfig) *Sys {
-	s := &Sys{
+func NewSys(config *SysConfig) *SysDriver {
+	s := &SysDriver{
 		SysConfig: *config,
 	}
 	for n := byte(0); n < ACMachines; n++ {
@@ -63,31 +66,31 @@ func NewSys(config *SysConfig) *Sys {
 	return s
 }
 
-func (s *Sys) ReadRegister(n int) int {
+func (s *SysDriver) ReadRegister(n int) int {
 	r := s.Watcher.ReadRegister(uint16(n))
 	return int(r)
 }
 
-func (s *Sys) WriteRegister(n int, value uint16) error {
+func (s *SysDriver) WriteRegister(n int, value uint16) error {
 	return s.Watcher.WriteRegister(uint16(n), value)
 }
 
-func (s *Sys) GetAirflow(ac ACMachine) int {
+func (s *SysDriver) GetAirflow(ac ACMachine) int {
 	r := s.ReadRegister(REG_AIRFLOW + int(ac) - 1)
 	return r
 }
 
-func (s *Sys) GetMachineTargetTemp(ac ACMachine) float32 {
+func (s *SysDriver) GetMachineTargetTemp(ac ACMachine) float32 {
 	r := s.ReadRegister(REG_AC_TARGET_TEMP + int(ac) - 1)
 	return reg2temp(uint16(r))
 }
 
-func (s *Sys) GetTargetFanMode(ac ACMachine) FanMode {
+func (s *SysDriver) GetTargetFanMode(ac ACMachine) FanMode {
 	r := s.ReadRegister(REG_AC_TARGET_FAN_MODE + int(ac) - 1)
 	return FanMode(r)
 }
 
-func (s *Sys) GetBaudRate() int {
+func (s *SysDriver) GetBaudRate() int {
 	r := s.ReadRegister(REG_SERIAL_CONFIG)
 	switch r {
 	case 2, 6:
@@ -98,7 +101,7 @@ func (s *Sys) GetBaudRate() int {
 	return 0
 }
 
-func (s *Sys) GetParity() string {
+func (s *SysDriver) GetParity() string {
 	r := s.ReadRegister(REG_SERIAL_CONFIG)
 	switch r {
 	case 2, 3:
@@ -109,26 +112,55 @@ func (s *Sys) GetParity() string {
 	return "unknown"
 }
 
-func (s *Sys) GetSlaveID() int {
+func (s *SysDriver) GetSlaveID() int {
 	r := s.ReadRegister(REG_SLAVE_ID)
 	return r
 }
 
-func (s *Sys) GetEfficiency() int {
+func (s *SysDriver) GetEfficiency() int {
 	r := s.ReadRegister(REG_EFFICIENCY)
 	return r
 }
 
-func (s *Sys) GetSystemEnabled() bool {
+func (s *SysDriver) GetSystemEnabled() bool {
 	r := s.ReadRegister(REG_SYSTEM_ENABLED)
 	return r != 0
 }
 
-func (s *Sys) GetSystemKNMode() KnMode {
+func (s *SysDriver) GetSystemKNMode() KnMode {
 	r := s.ReadRegister(REG_SYS_KN_MODE)
 	return KnMode(r)
 }
 
-func (s *Sys) SetSystemKNMode(knMode KnMode) error {
+func (s *SysDriver) SetSystemKNMode(knMode KnMode) error {
 	return s.WriteRegister(REG_SYS_KN_MODE, uint16(knMode))
+}
+
+// HVACMode returns the HA HVAC mode based on the
+// module state
+func (s *SysDriver) HVACMode() string {
+	if !s.GetSystemEnabled() {
+		return HVAC_MODE_OFF
+	}
+	switch s.GetSystemKNMode() {
+	case MODE_AIR_COOLING, MODE_UNDERFLOOR_AIR_COOLING:
+		return HVAC_MODE_COOL
+	case MODE_AIR_HEATING, MODE_UNDERFLOOR_HEATING, MODE_UNDERFLOOR_AIR_HEATING:
+		return HVAC_MODE_HEAT
+	}
+	return "unknown"
+}
+
+// HoldMode returns the HA Hold Mode based on the
+// module state
+func (s *SysDriver) HoldMode() string {
+	switch s.GetSystemKNMode() {
+	case MODE_AIR_COOLING, MODE_AIR_HEATING:
+		return HOLD_MODE_FAN_ONLY
+	case MODE_UNDERFLOOR_HEATING:
+		return HOLD_MODE_UNDERFLOOR_ONLY
+	case MODE_UNDERFLOOR_AIR_COOLING, MODE_UNDERFLOOR_AIR_HEATING:
+		return HOLD_MODE_UNDERFLOOR_AND_FAN
+	}
+	return "unknown"
 }

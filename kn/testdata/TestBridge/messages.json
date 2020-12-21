@@ -1,0 +1,3278 @@
+[
+	{
+		"Topic": "topicPrefix/TestModule/zone1/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/fanMode",
+		"Payload": "high"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/fanMode",
+		"Payload": "medium"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/fanMode",
+		"Payload": "low"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/fanMode",
+		"Payload": "auto"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/fanMode",
+		"Payload": "off"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/targetTemp",
+		"Payload": "21"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/hvacMode",
+		"Payload": "off"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/fanMode",
+		"Payload": "high"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/fanMode",
+		"Payload": "medium"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/fanMode",
+		"Payload": "low"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/fanMode",
+		"Payload": "auto"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/fanMode",
+		"Payload": "off"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/targetTemp",
+		"Payload": "22"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "off"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/fanMode",
+		"Payload": "high"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/fanMode",
+		"Payload": "medium"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/fanMode",
+		"Payload": "low"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/fanMode",
+		"Payload": "auto"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/fanMode",
+		"Payload": "off"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/targetTemp",
+		"Payload": "23"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "off"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/fanMode",
+		"Payload": "high"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/fanMode",
+		"Payload": "medium"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/fanMode",
+		"Payload": "low"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/fanMode",
+		"Payload": "auto"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/fanMode",
+		"Payload": "off"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/targetTemp",
+		"Payload": "24"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "off"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/fanMode",
+		"Payload": "high"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/fanMode",
+		"Payload": "medium"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/fanMode",
+		"Payload": "low"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/fanMode",
+		"Payload": "auto"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/fanMode",
+		"Payload": "off"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/targetTemp",
+		"Payload": "25"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "off"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/fanMode",
+		"Payload": "high"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/fanMode",
+		"Payload": "medium"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/fanMode",
+		"Payload": "low"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/fanMode",
+		"Payload": "auto"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/fanMode",
+		"Payload": "off"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/targetTemp",
+		"Payload": "26"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "off"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/fanMode",
+		"Payload": "high"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/fanMode",
+		"Payload": "medium"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/fanMode",
+		"Payload": "low"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/fanMode",
+		"Payload": "auto"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/fanMode",
+		"Payload": "off"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/targetTemp",
+		"Payload": "27"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "off"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/fanMode",
+		"Payload": "high"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/fanMode",
+		"Payload": "medium"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/fanMode",
+		"Payload": "low"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/fanMode",
+		"Payload": "auto"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/fanMode",
+		"Payload": "off"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/targetTemp",
+		"Payload": "28"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "off"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/fanMode",
+		"Payload": "high"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/fanMode",
+		"Payload": "medium"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/fanMode",
+		"Payload": "low"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/fanMode",
+		"Payload": "auto"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/fanMode",
+		"Payload": "off"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/targetTemp",
+		"Payload": "29"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "off"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/fanMode",
+		"Payload": "high"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/fanMode",
+		"Payload": "medium"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/fanMode",
+		"Payload": "low"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/fanMode",
+		"Payload": "auto"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/fanMode",
+		"Payload": "off"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/targetTemp",
+		"Payload": "30"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "cool"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "off"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "fan"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor and fan"
+	}
+]

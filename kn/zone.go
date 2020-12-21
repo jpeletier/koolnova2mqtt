@@ -17,6 +17,7 @@ type ZoneConfig struct {
 	Watcher    Watcher
 }
 
+// Zone is a driver to interact with climate zones
 type Zone struct {
 	ZoneConfig
 	OnEnabledChange     func()
@@ -28,27 +29,31 @@ type Zone struct {
 	temp                *average.MovingAverage
 }
 
-func NewZone(config *ZoneConfig) *Zone {
+// newZone creates a new climate zone with the supplied configuration
+// Invokes callbacks when specific registers change
+// reads registers to return current state
+// sets the appropriate registers when set* methods are invoked
+func newZone(config *ZoneConfig) *Zone {
 	z := &Zone{
 		ZoneConfig: *config,
 		temp:       average.New(300),
 	}
-	z.RegisterCallback(REG_ENABLED, func() {
+	z.registerCallback(REG_ENABLED, func() {
 		if z.OnEnabledChange != nil {
 			z.OnEnabledChange()
 		}
 	})
-	z.RegisterCallback(REG_TARGET_TEMP, func() {
+	z.registerCallback(REG_TARGET_TEMP, func() {
 		if z.OnTargetTempChange == nil {
 			return
 		}
 
-		temp := z.GetTargetTemperature()
+		temp := z.getTargetTemperature()
 		z.OnTargetTempChange(temp)
 	})
-	z.RegisterCallback(REG_MODE, func() {
-		fanMode := z.GetFanMode()
-		hvacMode := z.GetKnMode()
+	z.registerCallback(REG_MODE, func() {
+		fanMode := z.getFanMode()
+		hvacMode := z.getKnMode()
 		if z.OnFanModeChange != nil {
 			z.OnFanModeChange(fanMode)
 		}
@@ -59,54 +64,54 @@ func NewZone(config *ZoneConfig) *Zone {
 	return z
 }
 
-func (z *Zone) RegisterCallback(num int, f func()) {
+func (z *Zone) registerCallback(num int, f func()) {
 	z.Watcher.RegisterCallback(uint16((z.ZoneNumber-1)*REG_PER_ZONE+num), func(address uint16) {
 		f()
 	})
 }
 
-func (z *Zone) ReadRegister(num int) uint16 {
+func (z *Zone) readRegister(num int) uint16 {
 	return z.Watcher.ReadRegister(uint16((z.ZoneNumber-1)*REG_PER_ZONE + num))
 }
 
-func (z *Zone) WriteRegister(num int, value uint16) error {
+func (z *Zone) writeRegister(num int, value uint16) error {
 	return z.Watcher.WriteRegister(uint16((z.ZoneNumber-1)*REG_PER_ZONE+num), value)
 }
 
-func (z *Zone) IsOn() bool {
-	r1 := z.ReadRegister(REG_ENABLED)
+func (z *Zone) isOn() bool {
+	r1 := z.readRegister(REG_ENABLED)
 	return r1&0x1 != 0
 }
 
-func (z *Zone) SetOn(on bool) error {
+func (z *Zone) setOn(on bool) error {
 	var r1 uint16
 	if on {
 		r1 = 0x3
 	} else {
 		r1 = 0x2
 	}
-	return z.WriteRegister(REG_ENABLED, r1)
+	return z.writeRegister(REG_ENABLED, r1)
 }
 
-func (z *Zone) IsPresent() bool {
-	r1 := z.ReadRegister(REG_ENABLED)
+func (z *Zone) isPresent() bool {
+	r1 := z.readRegister(REG_ENABLED)
 	return r1&0x2 != 0
 }
 
 func (z *Zone) getCurrentTemperature() float32 {
-	r4 := z.ReadRegister(REG_CURRENT_TEMP)
+	r4 := z.readRegister(REG_CURRENT_TEMP)
 	return reg2temp(r4)
 }
 
-func (z *Zone) GetCurrentTemperature() float32 {
+func (z *Zone) getAverageCurrentTemperature() float32 {
 	return float32(math.Round(z.temp.Avg()*10) / 10)
 }
 
-func (z *Zone) SampleTemperature() {
+func (z *Zone) sampleTemperature() {
 	sample := z.getCurrentTemperature()
 	z.temp.Add(float64(sample))
 	if z.OnCurrentTempChange != nil {
-		t := z.GetCurrentTemperature()
+		t := z.getAverageCurrentTemperature()
 		if t != z.lastTemp {
 			z.lastTemp = t
 			z.OnCurrentTempChange(t)
@@ -114,28 +119,28 @@ func (z *Zone) SampleTemperature() {
 	}
 }
 
-func (z *Zone) GetTargetTemperature() float32 {
-	r3 := z.ReadRegister(REG_TARGET_TEMP)
+func (z *Zone) getTargetTemperature() float32 {
+	r3 := z.readRegister(REG_TARGET_TEMP)
 	return reg2temp(r3)
 }
 
-func (z *Zone) SetTargetTemperature(targetTemp float32) error {
-	return z.WriteRegister(REG_TARGET_TEMP, temp2reg(targetTemp))
+func (z *Zone) setTargetTemperature(targetTemp float32) error {
+	return z.writeRegister(REG_TARGET_TEMP, temp2reg(targetTemp))
 }
 
-func (z *Zone) GetFanMode() FanMode {
-	r2 := z.ReadRegister(REG_MODE)
+func (z *Zone) getFanMode() FanMode {
+	r2 := z.readRegister(REG_MODE)
 	return (FanMode)(r2&0x00F0) >> 4
 }
 
-func (z *Zone) SetFanMode(fanMode FanMode) error {
-	r2 := z.ReadRegister(REG_MODE) & 0x000F
+func (z *Zone) setFanMode(fanMode FanMode) error {
+	r2 := z.readRegister(REG_MODE) & 0x000F
 	fm := (uint16(fanMode) & 0x000F) << 4
-	return z.WriteRegister(REG_MODE, r2|fm)
+	return z.writeRegister(REG_MODE, r2|fm)
 }
 
-func (z *Zone) GetKnMode() KnMode {
-	r2 := z.ReadRegister(REG_MODE)
+func (z *Zone) getKnMode() KnMode {
+	r2 := z.readRegister(REG_MODE)
 	return (KnMode)(r2 & 0x000F)
 }
 

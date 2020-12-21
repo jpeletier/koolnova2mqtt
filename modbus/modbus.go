@@ -10,12 +10,6 @@ import (
 	gmodbus "github.com/wz2b/modbus"
 )
 
-type Modbus interface {
-	ReadRegister(slaveID byte, address uint16, quantity uint16) (results []uint16, err error)
-	WriteRegister(slaveID byte, address uint16, value uint16) (results []uint16, err error)
-	Close() error
-}
-
 type Config struct {
 	Port     string
 	BaudRate int
@@ -25,7 +19,7 @@ type Config struct {
 	Timeout  time.Duration
 }
 
-type modbus struct {
+type Modbus struct {
 	handler *gmodbus.RTUClientHandler
 	client  gmodbus.Client
 	lock    sync.RWMutex
@@ -37,7 +31,7 @@ func throttle(ms int) {
 
 var ErrIncorrectResultSize = errors.New("Incorrect number of results returned")
 
-func New(config *Config) (Modbus, error) {
+func New(config *Config) (*Modbus, error) {
 	handler := gmodbus.NewRTUClientHandler(config.Port)
 	handler.BaudRate = config.BaudRate
 	handler.DataBits = config.DataBits
@@ -45,13 +39,13 @@ func New(config *Config) (Modbus, error) {
 	handler.StopBits = config.StopBits
 	handler.Timeout = config.Timeout
 
-	return &modbus{
+	return &Modbus{
 		handler: handler,
 		client:  gmodbus.NewClient(handler),
 	}, handler.Connect()
 }
 
-func (mb *modbus) Close() error {
+func (mb *Modbus) Close() error {
 	return mb.handler.Close()
 }
 
@@ -66,7 +60,7 @@ func parseResults(r []byte, quantity uint16) ([]uint16, error) {
 	return results, nil
 }
 
-func (mb *modbus) ReadRegister(slaveID byte, address uint16, quantity uint16) (results []uint16, err error) {
+func (mb *Modbus) ReadRegister(slaveID byte, address uint16, quantity uint16) (results []uint16, err error) {
 	err = mb.try(slaveID, func() (err error) {
 		r, err := mb.client.ReadHoldingRegisters(address-1, quantity)
 		if err != nil {
@@ -78,7 +72,7 @@ func (mb *modbus) ReadRegister(slaveID byte, address uint16, quantity uint16) (r
 	return results, err
 }
 
-func (mb *modbus) WriteRegister(slaveID byte, address uint16, value uint16) (results []uint16, err error) {
+func (mb *Modbus) WriteRegister(slaveID byte, address uint16, value uint16) (results []uint16, err error) {
 	err = mb.try(slaveID, func() (err error) {
 		r, err := mb.client.WriteSingleRegister(address-1, value)
 		if err != nil {
@@ -90,7 +84,7 @@ func (mb *modbus) WriteRegister(slaveID byte, address uint16, value uint16) (res
 	return results, err
 }
 
-func (mb *modbus) try(slaveID byte, f func() error) (err error) {
+func (mb *Modbus) try(slaveID byte, f func() error) (err error) {
 	mb.lock.Lock()
 	defer mb.lock.Unlock()
 	defer throttle(100)
