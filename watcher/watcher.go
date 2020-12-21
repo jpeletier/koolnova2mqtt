@@ -1,3 +1,5 @@
+// Package watcher represents a cache of a range of modbus registers in a device
+// Can fire events if a watched register changes
 package watcher
 
 import (
@@ -7,25 +9,29 @@ import (
 	"sync"
 )
 
+// Config contains the configuration parameters for a new Watcher instance
 type Config struct {
-	Address      uint16
-	Quantity     uint16
-	SlaveID      byte
-	Modbus       modbus.Modbus
-	RegisterSize int
+	Address      uint16        // Start address
+	Quantity     uint16        // Number of registers to watch
+	SlaveID      byte          // SlaveID to watch
+	Modbus       modbus.Modbus // Modbus interface
+	RegisterSize int           // size of each register
 }
 
+// Watcher represents a cache of modbus registers in a device
 type Watcher struct {
 	Config
-	state     []byte
-	callbacks map[uint16]func(address uint16)
+	state     []byte                          // current view of the modbus register states
+	callbacks map[uint16]func(address uint16) // set of callbacks
 	lock      *sync.RWMutex
 }
 
 var ErrIncorrectRegisterSize = errors.New("Incorrect register size")
 var ErrAddressOutOfRange = errors.New("Register address out of range")
 var ErrUninitialized = errors.New("State uninitialized. Call Poll() first.")
+var ErrCannotIncreaseRange = errors.New("Cannot increase range")
 
+// New returns a new Watcher instance
 func New(config *Config) *Watcher {
 	return &Watcher{
 		Config:    *config,
@@ -34,10 +40,12 @@ func New(config *Config) *Watcher {
 	}
 }
 
+// RegisterCallback registers a new callback that will be fired when the specific register address changes values
 func (w *Watcher) RegisterCallback(address uint16, callback func(address uint16)) {
 	w.callbacks[address] = callback
 }
 
+// Poll refreshes the cache by reading the watched register range from the slave device
 func (w *Watcher) Poll() error {
 	w.lock.Lock()
 	newState, err := w.Modbus.ReadRegister(w.SlaveID, w.Address, w.Quantity)
@@ -81,6 +89,7 @@ func (w *Watcher) Poll() error {
 	return nil
 }
 
+// ReadRegister reads one register from the cache
 func (w *Watcher) ReadRegister(address uint16) (value []byte) {
 	w.lock.Lock()
 	defer w.lock.Unlock()
@@ -95,6 +104,7 @@ func (w *Watcher) ReadRegister(address uint16) (value []byte) {
 
 }
 
+// WriteRegister writes the value to the slave device and updates the cache if successful
 func (w *Watcher) WriteRegister(address uint16, value uint16) error {
 	w.lock.Lock()
 	results, err := w.Modbus.WriteRegister(w.SlaveID, address, value)
@@ -112,25 +122,26 @@ func (w *Watcher) WriteRegister(address uint16, value uint16) error {
 	return nil
 }
 
+// TriggerCallbacks calls all callbacks
 func (w *Watcher) TriggerCallbacks() {
 	for address, callback := range w.callbacks {
 		callback(address)
 	}
 }
 
+// Resize reduces the watched range
 func (w *Watcher) Resize(newQuantity int) {
 	w.lock.Lock()
 	defer w.lock.Unlock()
-	if newQuantity < int(w.Quantity) {
+	if newQuantity <= int(w.Quantity) {
 		w.state = w.state[:newQuantity*w.RegisterSize]
-		for address, _ := range w.callbacks {
+		for address := range w.callbacks {
 			if address > w.Address+uint16(newQuantity)-1 {
 				delete(w.callbacks, address)
 			}
 		}
 	} else {
-		w.state = nil
+		panic(ErrCannotIncreaseRange)
 	}
-
 	w.Quantity = uint16(newQuantity)
 }
