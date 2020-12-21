@@ -1,7 +1,6 @@
 package modbus
 
 import (
-	"encoding/binary"
 	"errors"
 )
 
@@ -18,28 +17,24 @@ func NewMock() Modbus {
 	}
 }
 
-func (ms *Mock) ReadRegister(slaveID byte, address uint16, quantity uint16) (results []byte, err error) {
+func (ms *Mock) ReadRegister(slaveID byte, address uint16, quantity uint16) (results []uint16, err error) {
 	state, ok := ms.State[slaveID]
 	if !ok {
 		return nil, errors.New("Unknown slave")
 	}
 	address--
 	for a := address; a < address+quantity; a++ {
-		b := make([]byte, 2)
-		binary.BigEndian.PutUint16(b, state[a])
-		results = append(results, b...)
+		results = append(results, state[a])
 	}
 	return results, nil
 }
-func (ms *Mock) WriteRegister(slaveID byte, address uint16, value uint16) (results []byte, err error) {
+func (ms *Mock) WriteRegister(slaveID byte, address uint16, value uint16) (results []uint16, err error) {
 	state, ok := ms.State[slaveID]
 	if !ok {
 		return nil, errors.New("Unknown slave")
 	}
 	state[address-1] = value
-	results = make([]byte, 2)
-	binary.BigEndian.PutUint16(results, value)
-	return results, nil
+	return []uint16{value}, nil
 }
 
 func (ms *Mock) Close() error { return nil }

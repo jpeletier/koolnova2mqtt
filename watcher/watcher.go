@@ -3,7 +3,6 @@
 package watcher
 
 import (
-	"bytes"
 	"errors"
 	"koolnova2mqtt/modbus"
 	"sync"
@@ -11,22 +10,20 @@ import (
 
 // Config contains the configuration parameters for a new Watcher instance
 type Config struct {
-	Address      uint16        // Start address
-	Quantity     uint16        // Number of registers to watch
-	SlaveID      byte          // SlaveID to watch
-	Modbus       modbus.Modbus // Modbus interface
-	RegisterSize int           // size of each register
+	Address  uint16        // Start address
+	Quantity uint16        // Number of registers to watch
+	SlaveID  byte          // SlaveID to watch
+	Modbus   modbus.Modbus // Modbus interface
 }
 
 // Watcher represents a cache of modbus registers in a device
 type Watcher struct {
 	Config
-	state     []byte                          // current view of the modbus register states
+	state     []uint16                        // current view of the modbus register states
 	callbacks map[uint16]func(address uint16) // set of callbacks
 	lock      *sync.RWMutex
 }
 
-var ErrIncorrectRegisterSize = errors.New("Incorrect register size")
 var ErrAddressOutOfRange = errors.New("Register address out of range")
 var ErrUninitialized = errors.New("State uninitialized. Call Poll() first.")
 var ErrCannotIncreaseRange = errors.New("Cannot increase range")
@@ -54,30 +51,18 @@ func (w *Watcher) Poll() error {
 		return err
 	}
 
-	if len(newState) != int(w.Quantity)*w.RegisterSize {
-		w.lock.Unlock()
-		return ErrIncorrectRegisterSize
-	}
-
 	oldState := w.state
 	w.state = newState
 	var callbackAddresses []uint16
 
 	first := len(oldState) != len(newState)
-	for n := 0; n < len(newState); n += w.RegisterSize {
-		address := uint16(n/w.RegisterSize) + w.Address
+	for n := 0; n < len(newState); n++ {
+		address := uint16(n) + w.Address
 		callback := w.callbacks[address]
 		if callback == nil {
 			continue
 		}
-		var oldValue []byte
-		newValue := newState[n : n+w.RegisterSize]
-		if first {
-			oldValue = nil
-		} else {
-			oldValue = oldState[n : n+w.RegisterSize]
-		}
-		if bytes.Compare(oldValue, newValue) != 0 {
+		if first || oldState[n] != newState[n] {
 			callbackAddresses = append(callbackAddresses, address)
 		}
 	}
@@ -90,7 +75,7 @@ func (w *Watcher) Poll() error {
 }
 
 // ReadRegister reads one register from the cache
-func (w *Watcher) ReadRegister(address uint16) (value []byte) {
+func (w *Watcher) ReadRegister(address uint16) (value uint16) {
 	w.lock.Lock()
 	defer w.lock.Unlock()
 	if address < w.Address || address > w.Address+uint16(w.Quantity) {
@@ -99,8 +84,7 @@ func (w *Watcher) ReadRegister(address uint16) (value []byte) {
 	if w.state == nil {
 		panic(ErrUninitialized)
 	}
-	registerOffset := int(address-w.Address) * w.RegisterSize
-	return w.state[registerOffset : registerOffset+w.RegisterSize]
+	return w.state[int(address-w.Address)]
 
 }
 
@@ -112,8 +96,7 @@ func (w *Watcher) WriteRegister(address uint16, value uint16) error {
 		w.lock.Unlock()
 		return err
 	}
-	registerOffset := int(address-w.Address) * w.RegisterSize
-	copy(w.state[registerOffset:registerOffset+w.RegisterSize], results)
+	w.state[int(address-w.Address)] = results[0]
 	callback := w.callbacks[address]
 	w.lock.Unlock()
 	if callback != nil {
@@ -134,7 +117,7 @@ func (w *Watcher) Resize(newQuantity int) {
 	w.lock.Lock()
 	defer w.lock.Unlock()
 	if newQuantity <= int(w.Quantity) {
-		w.state = w.state[:newQuantity*w.RegisterSize]
+		w.state = w.state[:newQuantity]
 		for address := range w.callbacks {
 			if address > w.Address+uint16(newQuantity)-1 {
 				delete(w.callbacks, address)

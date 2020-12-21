@@ -57,19 +57,17 @@ func NewBridge(config *Config) *Bridge {
 func (b *Bridge) Start() error {
 
 	zw := watcher.New(&watcher.Config{
-		Address:      FIRST_ZONE_REGISTER,
-		Quantity:     TOTAL_ZONE_REGISTERS,
-		RegisterSize: 2,
-		SlaveID:      b.SlaveID,
-		Modbus:       b.Modbus,
+		Address:  FIRST_ZONE_REGISTER,
+		Quantity: TOTAL_ZONE_REGISTERS,
+		SlaveID:  b.SlaveID,
+		Modbus:   b.Modbus,
 	})
 
 	sysw := watcher.New(&watcher.Config{
-		Address:      FIRST_SYS_REGISTER,
-		Quantity:     TOTAL_SYS_REGISTERS,
-		RegisterSize: 2,
-		SlaveID:      b.SlaveID,
-		Modbus:       b.Modbus,
+		Address:  FIRST_SYS_REGISTER,
+		Quantity: TOTAL_SYS_REGISTERS,
+		SlaveID:  b.SlaveID,
+		Modbus:   b.Modbus,
 	})
 	b.zw = zw
 	b.sysw = sysw

@@ -1,14 +1,13 @@
 package kn
 
 import (
-	"encoding/binary"
 	"math"
 
 	average "github.com/RobinUS2/golang-moving-average"
 )
 
 type Watcher interface {
-	ReadRegister(address uint16) (value []byte)
+	ReadRegister(address uint16) (value uint16)
 	WriteRegister(address uint16, value uint16) error
 	RegisterCallback(address uint16, callback func(address uint16))
 }
@@ -67,8 +66,7 @@ func (z *Zone) RegisterCallback(num int, f func()) {
 }
 
 func (z *Zone) ReadRegister(num int) uint16 {
-	b := z.Watcher.ReadRegister(uint16((z.ZoneNumber-1)*REG_PER_ZONE + num))
-	return binary.BigEndian.Uint16(b)
+	return z.Watcher.ReadRegister(uint16((z.ZoneNumber-1)*REG_PER_ZONE + num))
 }
 
 func (z *Zone) WriteRegister(num int, value uint16) error {

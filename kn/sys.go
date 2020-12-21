@@ -65,7 +65,7 @@ func NewSys(config *SysConfig) *Sys {
 
 func (s *Sys) ReadRegister(n int) int {
 	r := s.Watcher.ReadRegister(uint16(n))
-	return int(r[1])
+	return int(r)
 }
 
 func (s *Sys) WriteRegister(n int, value uint16) error {

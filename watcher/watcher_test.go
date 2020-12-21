@@ -14,11 +14,11 @@ var modbusError error
 type BuggyModbus struct {
 }
 
-func (ms *BuggyModbus) ReadRegister(slaveID byte, address uint16, quantity uint16) (results []byte, err error) {
-	return []byte{1, 2}, modbusError
+func (ms *BuggyModbus) ReadRegister(slaveID byte, address uint16, quantity uint16) (results []uint16, err error) {
+	return []uint16{0x0102}, modbusError
 
 }
-func (ms *BuggyModbus) WriteRegister(slaveID byte, address uint16, value uint16) (results []byte, err error) {
+func (ms *BuggyModbus) WriteRegister(slaveID byte, address uint16, value uint16) (results []uint16, err error) {
 	return nil, modbusError
 }
 
@@ -30,11 +30,10 @@ func TestWatcher(tx *testing.T) {
 	var err error
 
 	w := watcher.New(&watcher.Config{
-		Address:      1,
-		Quantity:     5,
-		RegisterSize: 2,
-		SlaveID:      49,
-		Modbus:       modbus.NewMock(),
+		Address:  1,
+		Quantity: 5,
+		SlaveID:  49,
+		Modbus:   modbus.NewMock(),
 	})
 
 	var cbAddress uint16
@@ -58,7 +57,7 @@ func TestWatcher(tx *testing.T) {
 
 	value := w.ReadRegister(1)
 	t.Ok(err)
-	t.Equals([]byte{0, 3}, value)
+	t.Equals(uint16(0x0003), value)
 
 	t.MustPanicWith(watcher.ErrAddressOutOfRange, func() {
 		w.ReadRegister(200)
@@ -80,7 +79,7 @@ func TestWatcher(tx *testing.T) {
 	t.Equals(uint16(3), cbAddress)
 
 	cbNewValue := w.ReadRegister(3)
-	t.Equals([]byte{0x12, 0x34}, cbNewValue)
+	t.Equals(uint16(0x1234), cbNewValue)
 
 	callbackCount = 0
 	err = w.Poll()
@@ -91,15 +90,11 @@ func TestWatcher(tx *testing.T) {
 	t.Equals(2, callbackCount)
 
 	w = watcher.New(&watcher.Config{
-		Address:      1,
-		Quantity:     5,
-		RegisterSize: 2,
-		SlaveID:      1,
-		Modbus:       &BuggyModbus{},
+		Address:  1,
+		Quantity: 5,
+		SlaveID:  1,
+		Modbus:   &BuggyModbus{},
 	})
-
-	err = w.Poll()
-	t.MustFailWith(err, watcher.ErrIncorrectRegisterSize)
 
 	modbusError = errors.New("error")
 
