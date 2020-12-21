@@ -4,16 +4,21 @@ package watcher
 
 import (
 	"errors"
-	"koolnova2mqtt/modbus"
 	"sync"
 )
 
+type Modbus interface {
+	ReadRegister(slaveID byte, address uint16, quantity uint16) (results []uint16, err error)
+	WriteRegister(slaveID byte, address uint16, value uint16) (results []uint16, err error)
+	Close() error
+}
+
 // Config contains the configuration parameters for a new Watcher instance
 type Config struct {
-	Address  uint16        // Start address
-	Quantity uint16        // Number of registers to watch
-	SlaveID  byte          // SlaveID to watch
-	Modbus   modbus.Modbus // Modbus interface
+	Address  uint16 // Start address
+	Quantity uint16 // Number of registers to watch
+	SlaveID  byte   // SlaveID to watch
+	Modbus   Modbus // Modbus interface
 }
 
 // Watcher represents a cache of modbus registers in a device

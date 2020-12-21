@@ -1,0 +1,802 @@
+[
+	{
+		"Topic": "topicPrefix/TestModule/zone1/currentTemp",
+		"Payload": "15"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/currentTemp",
+		"Payload": "15"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/currentTemp",
+		"Payload": "15"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/currentTemp",
+		"Payload": "15"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/currentTemp",
+		"Payload": "15"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/currentTemp",
+		"Payload": "15"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/currentTemp",
+		"Payload": "15"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/currentTemp",
+		"Payload": "15"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/currentTemp",
+		"Payload": "15"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/currentTemp",
+		"Payload": "15"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/currentTemp",
+		"Payload": "15.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/currentTemp",
+		"Payload": "15.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/currentTemp",
+		"Payload": "15.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/currentTemp",
+		"Payload": "15.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/currentTemp",
+		"Payload": "15.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/currentTemp",
+		"Payload": "15.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/currentTemp",
+		"Payload": "15.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/currentTemp",
+		"Payload": "15.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/currentTemp",
+		"Payload": "15.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/currentTemp",
+		"Payload": "15.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/currentTemp",
+		"Payload": "16"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/currentTemp",
+		"Payload": "16"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/currentTemp",
+		"Payload": "16"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/currentTemp",
+		"Payload": "16"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/currentTemp",
+		"Payload": "16"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/currentTemp",
+		"Payload": "16"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/currentTemp",
+		"Payload": "16"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/currentTemp",
+		"Payload": "16"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/currentTemp",
+		"Payload": "16"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/currentTemp",
+		"Payload": "16"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/currentTemp",
+		"Payload": "16.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/currentTemp",
+		"Payload": "16.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/currentTemp",
+		"Payload": "16.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/currentTemp",
+		"Payload": "16.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/currentTemp",
+		"Payload": "16.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/currentTemp",
+		"Payload": "16.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/currentTemp",
+		"Payload": "16.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/currentTemp",
+		"Payload": "16.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/currentTemp",
+		"Payload": "16.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/currentTemp",
+		"Payload": "16.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/currentTemp",
+		"Payload": "17"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/currentTemp",
+		"Payload": "17"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/currentTemp",
+		"Payload": "17"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/currentTemp",
+		"Payload": "17"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/currentTemp",
+		"Payload": "17"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/currentTemp",
+		"Payload": "17"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/currentTemp",
+		"Payload": "17"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/currentTemp",
+		"Payload": "17"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/currentTemp",
+		"Payload": "17"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/currentTemp",
+		"Payload": "17"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/currentTemp",
+		"Payload": "17.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/currentTemp",
+		"Payload": "17.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/currentTemp",
+		"Payload": "17.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/currentTemp",
+		"Payload": "17.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/currentTemp",
+		"Payload": "17.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/currentTemp",
+		"Payload": "17.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/currentTemp",
+		"Payload": "17.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/currentTemp",
+		"Payload": "17.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/currentTemp",
+		"Payload": "17.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/currentTemp",
+		"Payload": "17.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/currentTemp",
+		"Payload": "18"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/currentTemp",
+		"Payload": "18"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/currentTemp",
+		"Payload": "18"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/currentTemp",
+		"Payload": "18"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/currentTemp",
+		"Payload": "18"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/currentTemp",
+		"Payload": "18"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/currentTemp",
+		"Payload": "18"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/currentTemp",
+		"Payload": "18"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/currentTemp",
+		"Payload": "18"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/currentTemp",
+		"Payload": "18"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/currentTemp",
+		"Payload": "18.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/currentTemp",
+		"Payload": "18.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/currentTemp",
+		"Payload": "18.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/currentTemp",
+		"Payload": "18.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/currentTemp",
+		"Payload": "18.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/currentTemp",
+		"Payload": "18.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/currentTemp",
+		"Payload": "18.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/currentTemp",
+		"Payload": "18.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/currentTemp",
+		"Payload": "18.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/currentTemp",
+		"Payload": "18.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/currentTemp",
+		"Payload": "19"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/currentTemp",
+		"Payload": "19"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/currentTemp",
+		"Payload": "19"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/currentTemp",
+		"Payload": "19"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/currentTemp",
+		"Payload": "19"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/currentTemp",
+		"Payload": "19"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/currentTemp",
+		"Payload": "19"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/currentTemp",
+		"Payload": "19"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/currentTemp",
+		"Payload": "19"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/currentTemp",
+		"Payload": "19"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/currentTemp",
+		"Payload": "19.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/currentTemp",
+		"Payload": "19.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/currentTemp",
+		"Payload": "19.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/currentTemp",
+		"Payload": "19.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/currentTemp",
+		"Payload": "19.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/currentTemp",
+		"Payload": "19.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/currentTemp",
+		"Payload": "19.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/currentTemp",
+		"Payload": "19.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/currentTemp",
+		"Payload": "19.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/currentTemp",
+		"Payload": "19.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/currentTemp",
+		"Payload": "20"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/currentTemp",
+		"Payload": "20"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/currentTemp",
+		"Payload": "20"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/currentTemp",
+		"Payload": "20"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/currentTemp",
+		"Payload": "20"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/currentTemp",
+		"Payload": "20"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/currentTemp",
+		"Payload": "20"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/currentTemp",
+		"Payload": "20"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/currentTemp",
+		"Payload": "20"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/currentTemp",
+		"Payload": "20"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/currentTemp",
+		"Payload": "20.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/currentTemp",
+		"Payload": "20.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/currentTemp",
+		"Payload": "20.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/currentTemp",
+		"Payload": "20.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/currentTemp",
+		"Payload": "20.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/currentTemp",
+		"Payload": "20.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/currentTemp",
+		"Payload": "20.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/currentTemp",
+		"Payload": "20.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/currentTemp",
+		"Payload": "20.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/currentTemp",
+		"Payload": "20.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/currentTemp",
+		"Payload": "21"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/currentTemp",
+		"Payload": "21"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/currentTemp",
+		"Payload": "21"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/currentTemp",
+		"Payload": "21"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/currentTemp",
+		"Payload": "21"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/currentTemp",
+		"Payload": "21"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/currentTemp",
+		"Payload": "21"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/currentTemp",
+		"Payload": "21"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/currentTemp",
+		"Payload": "21"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/currentTemp",
+		"Payload": "21"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/currentTemp",
+		"Payload": "21.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/currentTemp",
+		"Payload": "21.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/currentTemp",
+		"Payload": "21.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/currentTemp",
+		"Payload": "21.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/currentTemp",
+		"Payload": "21.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/currentTemp",
+		"Payload": "21.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/currentTemp",
+		"Payload": "21.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/currentTemp",
+		"Payload": "21.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/currentTemp",
+		"Payload": "21.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/currentTemp",
+		"Payload": "21.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/currentTemp",
+		"Payload": "22"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/currentTemp",
+		"Payload": "22"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/currentTemp",
+		"Payload": "22"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/currentTemp",
+		"Payload": "22"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/currentTemp",
+		"Payload": "22"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/currentTemp",
+		"Payload": "22"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/currentTemp",
+		"Payload": "22"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/currentTemp",
+		"Payload": "22"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/currentTemp",
+		"Payload": "22"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/currentTemp",
+		"Payload": "22"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/currentTemp",
+		"Payload": "22.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/currentTemp",
+		"Payload": "22.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/currentTemp",
+		"Payload": "22.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/currentTemp",
+		"Payload": "22.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/currentTemp",
+		"Payload": "22.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/currentTemp",
+		"Payload": "22.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/currentTemp",
+		"Payload": "22.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/currentTemp",
+		"Payload": "22.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/currentTemp",
+		"Payload": "22.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/currentTemp",
+		"Payload": "22.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/currentTemp",
+		"Payload": "23"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/currentTemp",
+		"Payload": "23"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/currentTemp",
+		"Payload": "23"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/currentTemp",
+		"Payload": "23"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/currentTemp",
+		"Payload": "23"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/currentTemp",
+		"Payload": "23"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/currentTemp",
+		"Payload": "23"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/currentTemp",
+		"Payload": "23"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/currentTemp",
+		"Payload": "23"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/currentTemp",
+		"Payload": "23"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/currentTemp",
+		"Payload": "23.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/currentTemp",
+		"Payload": "23.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/currentTemp",
+		"Payload": "23.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/currentTemp",
+		"Payload": "23.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/currentTemp",
+		"Payload": "23.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/currentTemp",
+		"Payload": "23.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/currentTemp",
+		"Payload": "23.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/currentTemp",
+		"Payload": "23.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/currentTemp",
+		"Payload": "23.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/currentTemp",
+		"Payload": "23.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/currentTemp",
+		"Payload": "24"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/currentTemp",
+		"Payload": "24"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/currentTemp",
+		"Payload": "24"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/currentTemp",
+		"Payload": "24"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/currentTemp",
+		"Payload": "24"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/currentTemp",
+		"Payload": "24"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/currentTemp",
+		"Payload": "24"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/currentTemp",
+		"Payload": "24"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/currentTemp",
+		"Payload": "24"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/currentTemp",
+		"Payload": "24"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/currentTemp",
+		"Payload": "24.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/currentTemp",
+		"Payload": "24.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/currentTemp",
+		"Payload": "24.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/currentTemp",
+		"Payload": "24.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/currentTemp",
+		"Payload": "24.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/currentTemp",
+		"Payload": "24.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/currentTemp",
+		"Payload": "24.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/currentTemp",
+		"Payload": "24.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/currentTemp",
+		"Payload": "24.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/currentTemp",
+		"Payload": "24.5"
+	}
+]

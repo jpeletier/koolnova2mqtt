@@ -9,7 +9,8 @@ import (
 	"time"
 )
 
-func NewBridges(slaves map[byte]string, templateConfig *kn.Config) []*kn.Bridge {
+// newBridges builds all bridges from a list of Modbus slaves
+func newBridges(slaves map[byte]string, templateConfig *kn.Config) []*kn.Bridge {
 	var bridges []*kn.Bridge
 	for id, name := range slaves {
 		config := *templateConfig
@@ -23,9 +24,11 @@ func NewBridges(slaves map[byte]string, templateConfig *kn.Config) []*kn.Bridge 
 
 func main() {
 
+	// configure CTRL+C as a way to stop the application
 	ctrlC := make(chan os.Signal, 1)
 	signal.Notify(ctrlC, os.Interrupt, syscall.SIGTERM)
 
+	// read configuration from the command line
 	config := ParseCommandLine()
 
 	go func() {
@@ -35,7 +38,7 @@ func main() {
 		for range ticker.C {
 			newSessionID := config.MqttClient.ID
 			if sessionID != newSessionID {
-				bridges = NewBridges(config.slaves, config.BridgeTemplateConfig)
+				bridges = newBridges(config.slaves, config.BridgeTemplateConfig)
 				for _, b := range bridges {
 					err := b.Start()
 					if err != nil {
@@ -56,5 +59,6 @@ func main() {
 	<-ctrlC
 
 	config.MqttClient.Close()
+	config.BridgeTemplateConfig.Modbus.Close()
 
 }

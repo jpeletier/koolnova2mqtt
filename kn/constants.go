@@ -2,7 +2,6 @@ package kn
 
 import (
 	"errors"
-	"koolnova2mqtt/bimap"
 )
 
 const NUM_ZONES = 16
@@ -43,22 +42,6 @@ const MODE_UNDERFLOOR_HEATING KnMode = 0x04
 const MODE_UNDERFLOOR_AIR_COOLING KnMode = 0x05
 const MODE_UNDERFLOOR_AIR_HEATING KnMode = 0x06
 
-var FanModes = bimap.New(map[interface{}]interface{}{
-	"off":    FAN_OFF,
-	"low":    FAN_LOW,
-	"medium": FAN_MED,
-	"high":   FAN_HIGH,
-	"auto":   FAN_AUTO,
-})
-
-var KnModes = bimap.New(map[interface{}]interface{}{
-	"air cooling":            MODE_AIR_COOLING,
-	"air heating":            MODE_AIR_HEATING,
-	"underfloor heating":     MODE_UNDERFLOOR_HEATING,
-	"underfloor air cooling": MODE_UNDERFLOOR_AIR_COOLING,
-	"underfloor air heating": MODE_UNDERFLOOR_AIR_HEATING,
-})
-
 const HOLD_MODE_UNDERFLOOR_ONLY = "underfloor"
 const HOLD_MODE_FAN_ONLY = "fan"
 const HOLD_MODE_UNDERFLOOR_AND_FAN = "underfloor and fan"
@@ -76,28 +59,41 @@ const AC2 ACMachine = 2
 const AC3 ACMachine = 3
 const AC4 ACMachine = 4
 
+const HA_COMPONENT_SENSOR = "sensor"
+const HA_COMPONENT_CLIMATE = "climate"
+
 func FanMode2Str(fm FanMode) string {
-	st, ok := FanModes.GetInverse(fm)
-	if !ok {
-		st = "unknown"
+	switch fm {
+	case FAN_OFF:
+		return "off"
+	case FAN_LOW:
+		return "low"
+	case FAN_MED:
+		return "medium"
+	case FAN_HIGH:
+		return "high"
+	case FAN_AUTO:
+		return "auto"
+	default:
+		return "unknown"
 	}
-	return st.(string)
 }
 
 func Str2FanMode(st string) (FanMode, error) {
-	fm, ok := FanModes.Get(st)
-	if !ok {
+	switch st {
+	case "off":
+		return FAN_OFF, nil
+	case "low":
+		return FAN_LOW, nil
+	case "medium":
+		return FAN_MED, nil
+	case "high":
+		return FAN_HIGH, nil
+	case "auto":
+		return FAN_AUTO, nil
+	default:
 		return FAN_OFF, errors.New("Unknown fan mode")
 	}
-	return fm.(FanMode), nil
-}
-
-func KnMode2Str(hm KnMode) string {
-	st, ok := KnModes.GetInverse(hm)
-	if !ok {
-		st = "unknown"
-	}
-	return st.(string)
 }
 
 func ApplyHvacMode(knMode KnMode, hvacMode string) KnMode {

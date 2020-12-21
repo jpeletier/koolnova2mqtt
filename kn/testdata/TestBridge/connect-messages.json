@@ -1,0 +1,844 @@
+[
+	{
+		"Topic": "hassPrefix/climate/TestModule/zone1/config",
+		"Payload": {
+			"current_temperature_topic": "topicPrefix/TestModule/zone1/currentTemp",
+			"fan_mode_command_topic": "topicPrefix/TestModule/zone1/fanMode/set",
+			"fan_mode_state_topic": "topicPrefix/TestModule/zone1/fanMode",
+			"fan_modes": [
+				"auto",
+				"low",
+				"medium",
+				"high"
+			],
+			"hold_command_topic": "topicPrefix/TestModule/sys/holdMode/set",
+			"hold_modes": [
+				"underfloor",
+				"fan",
+				"underfloor and fan"
+			],
+			"hold_state_topic": "topicPrefix/TestModule/sys/holdMode",
+			"max_temp": 35,
+			"min_temp": 15,
+			"mode_command_topic": "topicPrefix/TestModule/zone1/hvacMode/set",
+			"mode_state_topic": "topicPrefix/TestModule/zone1/hvacMode",
+			"modes": [
+				"cool",
+				"heat",
+				"off"
+			],
+			"name": "TestModule_zone1",
+			"precision": 0.1,
+			"temp_step": 0.5,
+			"temperature_command_topic": "topicPrefix/TestModule/zone1/targetTemp/set",
+			"temperature_state_topic": "topicPrefix/TestModule/zone1/targetTemp",
+			"temperature_unit": "C",
+			"unique_id": "TestModule_zone1"
+		}
+	},
+	{
+		"Topic": "hassPrefix/climate/TestModule/zone10/config",
+		"Payload": {
+			"current_temperature_topic": "topicPrefix/TestModule/zone10/currentTemp",
+			"fan_mode_command_topic": "topicPrefix/TestModule/zone10/fanMode/set",
+			"fan_mode_state_topic": "topicPrefix/TestModule/zone10/fanMode",
+			"fan_modes": [
+				"auto",
+				"low",
+				"medium",
+				"high"
+			],
+			"hold_command_topic": "topicPrefix/TestModule/sys/holdMode/set",
+			"hold_modes": [
+				"underfloor",
+				"fan",
+				"underfloor and fan"
+			],
+			"hold_state_topic": "topicPrefix/TestModule/sys/holdMode",
+			"max_temp": 35,
+			"min_temp": 15,
+			"mode_command_topic": "topicPrefix/TestModule/zone10/hvacMode/set",
+			"mode_state_topic": "topicPrefix/TestModule/zone10/hvacMode",
+			"modes": [
+				"cool",
+				"heat",
+				"off"
+			],
+			"name": "TestModule_zone10",
+			"precision": 0.1,
+			"temp_step": 0.5,
+			"temperature_command_topic": "topicPrefix/TestModule/zone10/targetTemp/set",
+			"temperature_state_topic": "topicPrefix/TestModule/zone10/targetTemp",
+			"temperature_unit": "C",
+			"unique_id": "TestModule_zone10"
+		}
+	},
+	{
+		"Topic": "hassPrefix/climate/TestModule/zone2/config",
+		"Payload": {
+			"current_temperature_topic": "topicPrefix/TestModule/zone2/currentTemp",
+			"fan_mode_command_topic": "topicPrefix/TestModule/zone2/fanMode/set",
+			"fan_mode_state_topic": "topicPrefix/TestModule/zone2/fanMode",
+			"fan_modes": [
+				"auto",
+				"low",
+				"medium",
+				"high"
+			],
+			"hold_command_topic": "topicPrefix/TestModule/sys/holdMode/set",
+			"hold_modes": [
+				"underfloor",
+				"fan",
+				"underfloor and fan"
+			],
+			"hold_state_topic": "topicPrefix/TestModule/sys/holdMode",
+			"max_temp": 35,
+			"min_temp": 15,
+			"mode_command_topic": "topicPrefix/TestModule/zone2/hvacMode/set",
+			"mode_state_topic": "topicPrefix/TestModule/zone2/hvacMode",
+			"modes": [
+				"cool",
+				"heat",
+				"off"
+			],
+			"name": "TestModule_zone2",
+			"precision": 0.1,
+			"temp_step": 0.5,
+			"temperature_command_topic": "topicPrefix/TestModule/zone2/targetTemp/set",
+			"temperature_state_topic": "topicPrefix/TestModule/zone2/targetTemp",
+			"temperature_unit": "C",
+			"unique_id": "TestModule_zone2"
+		}
+	},
+	{
+		"Topic": "hassPrefix/climate/TestModule/zone3/config",
+		"Payload": {
+			"current_temperature_topic": "topicPrefix/TestModule/zone3/currentTemp",
+			"fan_mode_command_topic": "topicPrefix/TestModule/zone3/fanMode/set",
+			"fan_mode_state_topic": "topicPrefix/TestModule/zone3/fanMode",
+			"fan_modes": [
+				"auto",
+				"low",
+				"medium",
+				"high"
+			],
+			"hold_command_topic": "topicPrefix/TestModule/sys/holdMode/set",
+			"hold_modes": [
+				"underfloor",
+				"fan",
+				"underfloor and fan"
+			],
+			"hold_state_topic": "topicPrefix/TestModule/sys/holdMode",
+			"max_temp": 35,
+			"min_temp": 15,
+			"mode_command_topic": "topicPrefix/TestModule/zone3/hvacMode/set",
+			"mode_state_topic": "topicPrefix/TestModule/zone3/hvacMode",
+			"modes": [
+				"cool",
+				"heat",
+				"off"
+			],
+			"name": "TestModule_zone3",
+			"precision": 0.1,
+			"temp_step": 0.5,
+			"temperature_command_topic": "topicPrefix/TestModule/zone3/targetTemp/set",
+			"temperature_state_topic": "topicPrefix/TestModule/zone3/targetTemp",
+			"temperature_unit": "C",
+			"unique_id": "TestModule_zone3"
+		}
+	},
+	{
+		"Topic": "hassPrefix/climate/TestModule/zone4/config",
+		"Payload": {
+			"current_temperature_topic": "topicPrefix/TestModule/zone4/currentTemp",
+			"fan_mode_command_topic": "topicPrefix/TestModule/zone4/fanMode/set",
+			"fan_mode_state_topic": "topicPrefix/TestModule/zone4/fanMode",
+			"fan_modes": [
+				"auto",
+				"low",
+				"medium",
+				"high"
+			],
+			"hold_command_topic": "topicPrefix/TestModule/sys/holdMode/set",
+			"hold_modes": [
+				"underfloor",
+				"fan",
+				"underfloor and fan"
+			],
+			"hold_state_topic": "topicPrefix/TestModule/sys/holdMode",
+			"max_temp": 35,
+			"min_temp": 15,
+			"mode_command_topic": "topicPrefix/TestModule/zone4/hvacMode/set",
+			"mode_state_topic": "topicPrefix/TestModule/zone4/hvacMode",
+			"modes": [
+				"cool",
+				"heat",
+				"off"
+			],
+			"name": "TestModule_zone4",
+			"precision": 0.1,
+			"temp_step": 0.5,
+			"temperature_command_topic": "topicPrefix/TestModule/zone4/targetTemp/set",
+			"temperature_state_topic": "topicPrefix/TestModule/zone4/targetTemp",
+			"temperature_unit": "C",
+			"unique_id": "TestModule_zone4"
+		}
+	},
+	{
+		"Topic": "hassPrefix/climate/TestModule/zone5/config",
+		"Payload": {
+			"current_temperature_topic": "topicPrefix/TestModule/zone5/currentTemp",
+			"fan_mode_command_topic": "topicPrefix/TestModule/zone5/fanMode/set",
+			"fan_mode_state_topic": "topicPrefix/TestModule/zone5/fanMode",
+			"fan_modes": [
+				"auto",
+				"low",
+				"medium",
+				"high"
+			],
+			"hold_command_topic": "topicPrefix/TestModule/sys/holdMode/set",
+			"hold_modes": [
+				"underfloor",
+				"fan",
+				"underfloor and fan"
+			],
+			"hold_state_topic": "topicPrefix/TestModule/sys/holdMode",
+			"max_temp": 35,
+			"min_temp": 15,
+			"mode_command_topic": "topicPrefix/TestModule/zone5/hvacMode/set",
+			"mode_state_topic": "topicPrefix/TestModule/zone5/hvacMode",
+			"modes": [
+				"cool",
+				"heat",
+				"off"
+			],
+			"name": "TestModule_zone5",
+			"precision": 0.1,
+			"temp_step": 0.5,
+			"temperature_command_topic": "topicPrefix/TestModule/zone5/targetTemp/set",
+			"temperature_state_topic": "topicPrefix/TestModule/zone5/targetTemp",
+			"temperature_unit": "C",
+			"unique_id": "TestModule_zone5"
+		}
+	},
+	{
+		"Topic": "hassPrefix/climate/TestModule/zone6/config",
+		"Payload": {
+			"current_temperature_topic": "topicPrefix/TestModule/zone6/currentTemp",
+			"fan_mode_command_topic": "topicPrefix/TestModule/zone6/fanMode/set",
+			"fan_mode_state_topic": "topicPrefix/TestModule/zone6/fanMode",
+			"fan_modes": [
+				"auto",
+				"low",
+				"medium",
+				"high"
+			],
+			"hold_command_topic": "topicPrefix/TestModule/sys/holdMode/set",
+			"hold_modes": [
+				"underfloor",
+				"fan",
+				"underfloor and fan"
+			],
+			"hold_state_topic": "topicPrefix/TestModule/sys/holdMode",
+			"max_temp": 35,
+			"min_temp": 15,
+			"mode_command_topic": "topicPrefix/TestModule/zone6/hvacMode/set",
+			"mode_state_topic": "topicPrefix/TestModule/zone6/hvacMode",
+			"modes": [
+				"cool",
+				"heat",
+				"off"
+			],
+			"name": "TestModule_zone6",
+			"precision": 0.1,
+			"temp_step": 0.5,
+			"temperature_command_topic": "topicPrefix/TestModule/zone6/targetTemp/set",
+			"temperature_state_topic": "topicPrefix/TestModule/zone6/targetTemp",
+			"temperature_unit": "C",
+			"unique_id": "TestModule_zone6"
+		}
+	},
+	{
+		"Topic": "hassPrefix/climate/TestModule/zone7/config",
+		"Payload": {
+			"current_temperature_topic": "topicPrefix/TestModule/zone7/currentTemp",
+			"fan_mode_command_topic": "topicPrefix/TestModule/zone7/fanMode/set",
+			"fan_mode_state_topic": "topicPrefix/TestModule/zone7/fanMode",
+			"fan_modes": [
+				"auto",
+				"low",
+				"medium",
+				"high"
+			],
+			"hold_command_topic": "topicPrefix/TestModule/sys/holdMode/set",
+			"hold_modes": [
+				"underfloor",
+				"fan",
+				"underfloor and fan"
+			],
+			"hold_state_topic": "topicPrefix/TestModule/sys/holdMode",
+			"max_temp": 35,
+			"min_temp": 15,
+			"mode_command_topic": "topicPrefix/TestModule/zone7/hvacMode/set",
+			"mode_state_topic": "topicPrefix/TestModule/zone7/hvacMode",
+			"modes": [
+				"cool",
+				"heat",
+				"off"
+			],
+			"name": "TestModule_zone7",
+			"precision": 0.1,
+			"temp_step": 0.5,
+			"temperature_command_topic": "topicPrefix/TestModule/zone7/targetTemp/set",
+			"temperature_state_topic": "topicPrefix/TestModule/zone7/targetTemp",
+			"temperature_unit": "C",
+			"unique_id": "TestModule_zone7"
+		}
+	},
+	{
+		"Topic": "hassPrefix/climate/TestModule/zone8/config",
+		"Payload": {
+			"current_temperature_topic": "topicPrefix/TestModule/zone8/currentTemp",
+			"fan_mode_command_topic": "topicPrefix/TestModule/zone8/fanMode/set",
+			"fan_mode_state_topic": "topicPrefix/TestModule/zone8/fanMode",
+			"fan_modes": [
+				"auto",
+				"low",
+				"medium",
+				"high"
+			],
+			"hold_command_topic": "topicPrefix/TestModule/sys/holdMode/set",
+			"hold_modes": [
+				"underfloor",
+				"fan",
+				"underfloor and fan"
+			],
+			"hold_state_topic": "topicPrefix/TestModule/sys/holdMode",
+			"max_temp": 35,
+			"min_temp": 15,
+			"mode_command_topic": "topicPrefix/TestModule/zone8/hvacMode/set",
+			"mode_state_topic": "topicPrefix/TestModule/zone8/hvacMode",
+			"modes": [
+				"cool",
+				"heat",
+				"off"
+			],
+			"name": "TestModule_zone8",
+			"precision": 0.1,
+			"temp_step": 0.5,
+			"temperature_command_topic": "topicPrefix/TestModule/zone8/targetTemp/set",
+			"temperature_state_topic": "topicPrefix/TestModule/zone8/targetTemp",
+			"temperature_unit": "C",
+			"unique_id": "TestModule_zone8"
+		}
+	},
+	{
+		"Topic": "hassPrefix/climate/TestModule/zone9/config",
+		"Payload": {
+			"current_temperature_topic": "topicPrefix/TestModule/zone9/currentTemp",
+			"fan_mode_command_topic": "topicPrefix/TestModule/zone9/fanMode/set",
+			"fan_mode_state_topic": "topicPrefix/TestModule/zone9/fanMode",
+			"fan_modes": [
+				"auto",
+				"low",
+				"medium",
+				"high"
+			],
+			"hold_command_topic": "topicPrefix/TestModule/sys/holdMode/set",
+			"hold_modes": [
+				"underfloor",
+				"fan",
+				"underfloor and fan"
+			],
+			"hold_state_topic": "topicPrefix/TestModule/sys/holdMode",
+			"max_temp": 35,
+			"min_temp": 15,
+			"mode_command_topic": "topicPrefix/TestModule/zone9/hvacMode/set",
+			"mode_state_topic": "topicPrefix/TestModule/zone9/hvacMode",
+			"modes": [
+				"cool",
+				"heat",
+				"off"
+			],
+			"name": "TestModule_zone9",
+			"precision": 0.1,
+			"temp_step": 0.5,
+			"temperature_command_topic": "topicPrefix/TestModule/zone9/targetTemp/set",
+			"temperature_state_topic": "topicPrefix/TestModule/zone9/targetTemp",
+			"temperature_unit": "C",
+			"unique_id": "TestModule_zone9"
+		}
+	},
+	{
+		"Topic": "hassPrefix/sensor/TestModule/zone10_target_temp/config",
+		"Payload": {
+			"device_class": "temperature",
+			"name": "TestModule_zone10_target_temp",
+			"state_topic": "topicPrefix/TestModule/zone10/targetTemp",
+			"unique_id": "TestModule_zone10_target_temp",
+			"unit_of_measurement": "ºC"
+		}
+	},
+	{
+		"Topic": "hassPrefix/sensor/TestModule/zone10_temp/config",
+		"Payload": {
+			"device_class": "temperature",
+			"name": "TestModule_zone10_temp",
+			"state_topic": "topicPrefix/TestModule/zone10/currentTemp",
+			"unique_id": "TestModule_zone10_temp",
+			"unit_of_measurement": "ºC"
+		}
+	},
+	{
+		"Topic": "hassPrefix/sensor/TestModule/zone1_target_temp/config",
+		"Payload": {
+			"device_class": "temperature",
+			"name": "TestModule_zone1_target_temp",
+			"state_topic": "topicPrefix/TestModule/zone1/targetTemp",
+			"unique_id": "TestModule_zone1_target_temp",
+			"unit_of_measurement": "ºC"
+		}
+	},
+	{
+		"Topic": "hassPrefix/sensor/TestModule/zone1_temp/config",
+		"Payload": {
+			"device_class": "temperature",
+			"name": "TestModule_zone1_temp",
+			"state_topic": "topicPrefix/TestModule/zone1/currentTemp",
+			"unique_id": "TestModule_zone1_temp",
+			"unit_of_measurement": "ºC"
+		}
+	},
+	{
+		"Topic": "hassPrefix/sensor/TestModule/zone2_target_temp/config",
+		"Payload": {
+			"device_class": "temperature",
+			"name": "TestModule_zone2_target_temp",
+			"state_topic": "topicPrefix/TestModule/zone2/targetTemp",
+			"unique_id": "TestModule_zone2_target_temp",
+			"unit_of_measurement": "ºC"
+		}
+	},
+	{
+		"Topic": "hassPrefix/sensor/TestModule/zone2_temp/config",
+		"Payload": {
+			"device_class": "temperature",
+			"name": "TestModule_zone2_temp",
+			"state_topic": "topicPrefix/TestModule/zone2/currentTemp",
+			"unique_id": "TestModule_zone2_temp",
+			"unit_of_measurement": "ºC"
+		}
+	},
+	{
+		"Topic": "hassPrefix/sensor/TestModule/zone3_target_temp/config",
+		"Payload": {
+			"device_class": "temperature",
+			"name": "TestModule_zone3_target_temp",
+			"state_topic": "topicPrefix/TestModule/zone3/targetTemp",
+			"unique_id": "TestModule_zone3_target_temp",
+			"unit_of_measurement": "ºC"
+		}
+	},
+	{
+		"Topic": "hassPrefix/sensor/TestModule/zone3_temp/config",
+		"Payload": {
+			"device_class": "temperature",
+			"name": "TestModule_zone3_temp",
+			"state_topic": "topicPrefix/TestModule/zone3/currentTemp",
+			"unique_id": "TestModule_zone3_temp",
+			"unit_of_measurement": "ºC"
+		}
+	},
+	{
+		"Topic": "hassPrefix/sensor/TestModule/zone4_target_temp/config",
+		"Payload": {
+			"device_class": "temperature",
+			"name": "TestModule_zone4_target_temp",
+			"state_topic": "topicPrefix/TestModule/zone4/targetTemp",
+			"unique_id": "TestModule_zone4_target_temp",
+			"unit_of_measurement": "ºC"
+		}
+	},
+	{
+		"Topic": "hassPrefix/sensor/TestModule/zone4_temp/config",
+		"Payload": {
+			"device_class": "temperature",
+			"name": "TestModule_zone4_temp",
+			"state_topic": "topicPrefix/TestModule/zone4/currentTemp",
+			"unique_id": "TestModule_zone4_temp",
+			"unit_of_measurement": "ºC"
+		}
+	},
+	{
+		"Topic": "hassPrefix/sensor/TestModule/zone5_target_temp/config",
+		"Payload": {
+			"device_class": "temperature",
+			"name": "TestModule_zone5_target_temp",
+			"state_topic": "topicPrefix/TestModule/zone5/targetTemp",
+			"unique_id": "TestModule_zone5_target_temp",
+			"unit_of_measurement": "ºC"
+		}
+	},
+	{
+		"Topic": "hassPrefix/sensor/TestModule/zone5_temp/config",
+		"Payload": {
+			"device_class": "temperature",
+			"name": "TestModule_zone5_temp",
+			"state_topic": "topicPrefix/TestModule/zone5/currentTemp",
+			"unique_id": "TestModule_zone5_temp",
+			"unit_of_measurement": "ºC"
+		}
+	},
+	{
+		"Topic": "hassPrefix/sensor/TestModule/zone6_target_temp/config",
+		"Payload": {
+			"device_class": "temperature",
+			"name": "TestModule_zone6_target_temp",
+			"state_topic": "topicPrefix/TestModule/zone6/targetTemp",
+			"unique_id": "TestModule_zone6_target_temp",
+			"unit_of_measurement": "ºC"
+		}
+	},
+	{
+		"Topic": "hassPrefix/sensor/TestModule/zone6_temp/config",
+		"Payload": {
+			"device_class": "temperature",
+			"name": "TestModule_zone6_temp",
+			"state_topic": "topicPrefix/TestModule/zone6/currentTemp",
+			"unique_id": "TestModule_zone6_temp",
+			"unit_of_measurement": "ºC"
+		}
+	},
+	{
+		"Topic": "hassPrefix/sensor/TestModule/zone7_target_temp/config",
+		"Payload": {
+			"device_class": "temperature",
+			"name": "TestModule_zone7_target_temp",
+			"state_topic": "topicPrefix/TestModule/zone7/targetTemp",
+			"unique_id": "TestModule_zone7_target_temp",
+			"unit_of_measurement": "ºC"
+		}
+	},
+	{
+		"Topic": "hassPrefix/sensor/TestModule/zone7_temp/config",
+		"Payload": {
+			"device_class": "temperature",
+			"name": "TestModule_zone7_temp",
+			"state_topic": "topicPrefix/TestModule/zone7/currentTemp",
+			"unique_id": "TestModule_zone7_temp",
+			"unit_of_measurement": "ºC"
+		}
+	},
+	{
+		"Topic": "hassPrefix/sensor/TestModule/zone8_target_temp/config",
+		"Payload": {
+			"device_class": "temperature",
+			"name": "TestModule_zone8_target_temp",
+			"state_topic": "topicPrefix/TestModule/zone8/targetTemp",
+			"unique_id": "TestModule_zone8_target_temp",
+			"unit_of_measurement": "ºC"
+		}
+	},
+	{
+		"Topic": "hassPrefix/sensor/TestModule/zone8_temp/config",
+		"Payload": {
+			"device_class": "temperature",
+			"name": "TestModule_zone8_temp",
+			"state_topic": "topicPrefix/TestModule/zone8/currentTemp",
+			"unique_id": "TestModule_zone8_temp",
+			"unit_of_measurement": "ºC"
+		}
+	},
+	{
+		"Topic": "hassPrefix/sensor/TestModule/zone9_target_temp/config",
+		"Payload": {
+			"device_class": "temperature",
+			"name": "TestModule_zone9_target_temp",
+			"state_topic": "topicPrefix/TestModule/zone9/targetTemp",
+			"unique_id": "TestModule_zone9_target_temp",
+			"unit_of_measurement": "ºC"
+		}
+	},
+	{
+		"Topic": "hassPrefix/sensor/TestModule/zone9_temp/config",
+		"Payload": {
+			"device_class": "temperature",
+			"name": "TestModule_zone9_temp",
+			"state_topic": "topicPrefix/TestModule/zone9/currentTemp",
+			"unique_id": "TestModule_zone9_temp",
+			"unit_of_measurement": "ºC"
+		}
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/ac1/airflow",
+		"Payload": "0"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/ac1/fanMode",
+		"Payload": "auto"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/ac1/targetTemp",
+		"Payload": "0"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/ac2/airflow",
+		"Payload": "0"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/ac2/fanMode",
+		"Payload": "auto"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/ac2/targetTemp",
+		"Payload": "0"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/ac3/airflow",
+		"Payload": "0"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/ac3/fanMode",
+		"Payload": "high"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/ac3/targetTemp",
+		"Payload": "0"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/ac4/airflow",
+		"Payload": "0"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/ac4/fanMode",
+		"Payload": "auto"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/ac4/targetTemp",
+		"Payload": "0"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/efficiency",
+		"Payload": "3"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/enabled",
+		"Payload": "true"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/holdMode",
+		"Payload": "underfloor"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/serialBaud",
+		"Payload": "9600"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/serialParity",
+		"Payload": "even"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/sys/slaveId",
+		"Payload": "49"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/fanMode",
+		"Payload": "auto"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone1/targetTemp",
+		"Payload": "20.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/fanMode",
+		"Payload": "auto"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone10/targetTemp",
+		"Payload": "20.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/fanMode",
+		"Payload": "auto"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone2/targetTemp",
+		"Payload": "20.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/fanMode",
+		"Payload": "auto"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone3/targetTemp",
+		"Payload": "20.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/fanMode",
+		"Payload": "auto"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone4/targetTemp",
+		"Payload": "20.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/fanMode",
+		"Payload": "auto"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone5/targetTemp",
+		"Payload": "20.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/fanMode",
+		"Payload": "high"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone6/targetTemp",
+		"Payload": "20.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/fanMode",
+		"Payload": "high"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone7/targetTemp",
+		"Payload": "20.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/fanMode",
+		"Payload": "auto"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone8/targetTemp",
+		"Payload": "20.5"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/fanMode",
+		"Payload": "auto"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/hvacMode",
+		"Payload": "heat"
+	},
+	{
+		"Topic": "topicPrefix/TestModule/zone9/targetTemp",
+		"Payload": "20.5"
+	}
+]
