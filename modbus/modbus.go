@@ -105,9 +105,9 @@ func (mb *modbus) try(slaveID byte, f func() error) (err error) {
 		log.Printf("Retried modbus operation due to %s. %d retries left\n", err, retries)
 		mb.handler.Close()
 		throttle(100)
-		err = mb.handler.Connect()
-		if err != nil {
-			return err
+		connectErr := mb.handler.Connect()
+		if connectErr != nil {
+			return connectErr
 		}
 		retries--
 		throttle(delay)
