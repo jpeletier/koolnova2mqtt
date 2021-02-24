@@ -246,7 +246,7 @@ func (b *Bridge) Start() error {
 			"name":                name,
 			"device_class":        "temperature",
 			"state_topic":         currentTempTopic,
-			"unit_of_measurement": "ºC",
+			"unit_of_measurement": "°C",
 			"unique_id":           name,
 		})
 
@@ -256,7 +256,7 @@ func (b *Bridge) Start() error {
 			"name":                name,
 			"device_class":        "temperature",
 			"state_topic":         targetTempTopic,
-			"unit_of_measurement": "ºC",
+			"unit_of_measurement": "°C",
 			"unique_id":           name,
 		})
 
